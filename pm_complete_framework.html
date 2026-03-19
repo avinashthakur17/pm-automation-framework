@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)file:///C:/Users/avina/Downloads/pm_complete_framework_7.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM AI Automation — Complete Framework</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8f8f6; --bg2:#ffffff; --bg3:#f1efe8;
+  --text:#0f0f0e; --text2:#5f5e5a; --text3:#888780;
+  --border:rgba(0,0,0,0.1);
+  --purple:#534AB7; --purple-l:#eeedfe; --purple-t:#3c3489;
+  --blue:#185FA5;  --blue-l:#e6f1fb;   --blue-t:#0c447c;
+  --teal:#0F6E56;  --teal-l:#e1f5ee;   --teal-t:#085041;
+  --coral:#993C1D; --coral-l:#faece7;  --coral-t:#712B13;
+  --green:#3B6D11; --green-l:#eaf3de;  --green-t:#27500a;
+  --amber:#854F0B; --amber-l:#faeeda;  --amber-t:#633806;
+  --gray:#5F5E5A;  --gray-l:#f1efe8;   --gray-t:#2c2c2a;
+  --red:#A32D2D;   --red-l:#fcebeb;    --red-t:#791f1f;
+  --r:8px; --rl:12px; --font:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--blue-t);text-decoration:none}
+
+/* ── NAV ── */
+.topnav{background:var(--purple);padding:0 24px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100}
+.topnav-brand{color:#fff;font-size:13px;font-weight:500;padding:12px 0;margin-right:20px;white-space:nowrap}
+.topnav a{color:rgba(255,255,255,0.75);font-size:12px;padding:12px 12px;display:block;transition:color .15s}
+.topnav a:hover{color:#fff}
+
+/* ── LAYOUT ── */
+.page{max-width:1060px;margin:0 auto;padding:28px 20px 60px}
+.section{margin-bottom:36px}
+.section-title{font-size:17px;font-weight:500;color:var(--text);margin-bottom:4px;padding-bottom:8px;border-bottom:1.5px solid var(--border)}
+.section-sub{font-size:12px;color:var(--text2);margin-bottom:16px;margin-top:4px}
+
+/* ── PAGE HEADER ── */
+.pg-header{background:var(--purple);border-radius:var(--rl);padding:28px 28px 24px;margin-bottom:28px;color:#fff}
+.pg-header h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.pg-header p{font-size:13px;color:rgba(255,255,255,0.72);max-width:700px}
+.pg-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pg-pill{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,0.18);color:#fff}
+
+/* ── ASSUMPTION BANNER ── */
+.assumption-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:12px}
+.assumption-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--r);padding:12px 14px}
+.assumption-card h4{font-size:12px;font-weight:500;color:var(--amber-t);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.assumption-card h4::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0}
+.assumption-card ul{list-style:none;padding:0}
+.assumption-card li{font-size:12px;color:var(--text2);padding:2px 0 2px 12px;position:relative}
+.assumption-card li::before{content:'·';position:absolute;left:2px;color:var(--text3)}
+
+/* ── ARCHITECTURE DIAGRAM ── */
+.arch-wrap{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--rl);overflow:hidden}
+.arch-layer{padding:14px 16px;border-bottom:0.5px solid var(--border)}
+.arch-layer:last-child{border-bottom:none}
+.arch-layer-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:8px}
+.arch-boxes{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch}
+.arch-box{border-radius:var(--r);padding:10px 12px;flex:1;min-width:120px;max-width:200px}
+.arch-box.wide{max-width:none;flex:2}
+.arch-box h5{font-size:12px;font-weight:500;margin-bottom:2px}
+.arch-box p{font-size:11px;opacity:.82;line-height:1.4}
+.arch-box.hu{background:var(--amber-l);color:var(--amber-t)}
+.arch-box.orch{background:var(--purple-l);color:var(--purple-t)}
+.arch-box.data{background:var(--blue-l);color:var(--blue-t)}
+.arch-box.camp{background:var(--teal-l);color:var(--teal-t)}
+.arch-box.cre{background:var(--coral-l);color:var(--coral-t)}
+.arch-box.rep{background:var(--green-l);color:var(--green-t)}
+.arch-box.plat{background:var(--gray-l);color:var(--gray-t)}
+.arch-box.out{background:var(--green-l);color:var(--green-t)}
+.arch-arrow{display:flex;justify-content:center;align-items:center;padding:3px;color:var(--text3);font-size:14px;font-weight:300}
+
+/* ── AGENT CARDS ── */
+.agent-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.agent-grid{grid-template-columns:1fr}}
+.agent-card{border:0.5px solid var(--border);border-radius:var(--rl);overflow:hidden;background:var(--bg2)}
+.agent-card.full{grid-column:1/-1}
+.ac-header{padding:12px 14px;cursor:pointer;user-select:none;display:flex;align-items:flex-start;gap:10px}
+.ac-header:hover{filter:brightness(.97)}
+.ac-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0;margin-top:2px}
+.ac-info{flex:1}
+.ac-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:1px}
+.ac-role{font-size:11px;color:var(--text2)}
+.ac-chev{font-size:10px;color:var(--text3);margin-top:4px;transition:transform .2s}
+.ac-chev.open{transform:rotate(180deg)}
+.ac-body{display:none;border-top:0.5px solid var(--border);padding:12px 14px 14px}
+.ac-body.open{display:block}
+.ac-row{display:grid;grid-template-columns:90px 1fr;gap:6px 10px;font-size:12px;margin-bottom:6px;align-items:start}
+.ac-row-label{color:var(--text3);font-weight:500;font-size:11px;padding-top:1px}
+.ac-row-val{color:var(--text);line-height:1.45}
+.tag-row{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:10px;padding:2px 7px;border-radius:6px;font-weight:500}
+.tag-pu{background:var(--purple-l);color:var(--purple-t)}
+.tag-bl{background:var(--blue-l);color:var(--blue-t)}
+.tag-tl{background:var(--teal-l);color:var(--teal-t)}
+.tag-co{background:var(--coral-l);color:var(--coral-t)}
+.tag-gr{background:var(--green-l);color:var(--green-t)}
+.tag-am{background:var(--amber-l);color:var(--amber-t)}
+.tag-gy{background:var(--gray-l);color:var(--gray-t)}
+.tag-rd{background:var(--red-l);color:var(--red-t)}
+.auto-badge{display:inline-block;font-size:10px;padding:1px 7px;border-radius:4px;font-weight:500}
+.auto-full{background:var(--green-l);color:var(--green-t)}
+.auto-guard{background:var(--amber-l);color:var(--amber-t)}
+.auto-human{background:var(--red-l);color:var(--red-t)}
+
+/* ── DATA FLOW TABLE ── */
+.df-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.df-table th{padding:8px 10px;text-align:left;font-size:11px;font-weight:500;color:var(--text2);background:var(--bg3);border-bottom:0.5px solid var(--border)}
+.df-table td{padding:8px 10px;border-bottom:0.5px solid var(--border);vertical-align:top;line-height:1.45;color:var(--text)}
+.df-table tr:last-child td{border-bottom:none}
+.df-table tr:hover td{background:var(--bg3)}
+.plat-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:5px;font-weight:500;background:var(--gray-l);color:var(--gray-t);white-space:nowrap}
+.w14{width:14%} .w16{width:16%} .w18{width:18%} .w20{width:20%} .w22{width:22%} .w26{width:26%}
+
+/* ── TOOLS TABLE ── */
+.tl-table{width:100%;border-collapse:collapse;font-size:12px}
+.tl-table th{padding:7px 10px;text-align:left;font-size:11px;font-weight:500;color:var(--text2);background:var(--bg3);border-bottom:0.5px solid var(--border)}
+.tl-table td{padding:7px 10px;border-bottom:0.5px solid var(--border);vertical-align:top;line-height:1.45;color:var(--text)}
+.tl-table tr:last-child td{border-bottom:none}
+.tl-table tr:hover td{background:var(--bg3)}
+.tool-name{font-weight:500}
+
+/* ── WORKFLOW ── */
+.wf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.wf-grid{grid-template-columns:1fr}}
+
+.wf-card{border:0.5px solid var(--border);border-radius:var(--rl);background:var(--bg2);overflow:hidden}
+.wf-header{padding:10px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.wf-header:hover{filter:brightness(.97)}
+.wf-num{width:24px;height:24px;border-radius:50%;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wf-title{font-size:13px;font-weight:500;flex:1}
+.wf-body{display:none;border-top:0.5px solid var(--border);padding:0}
+.wf-body.open{display:block}
+.wf-step{display:flex;align-items:flex-start;gap:10px;padding:9px 14px;border-bottom:0.5px solid var(--border);font-size:12px}
+.wf-step:last-child{border-bottom:none}
+.wf-step-num{width:20px;height:20px;border-radius:50%;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.wf-step-content{flex:1}
+.wf-step-actor{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:1px}
+.wf-step-desc{color:var(--text2);line-height:1.4}
+
+/* ── PROTOCOL ── */
+.proto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.proto-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--r);padding:12px 14px}
+.proto-card h4{font-size:12px;font-weight:500;color:var(--text);margin-bottom:6px}
+.proto-card p,.proto-card li{font-size:12px;color:var(--text2);line-height:1.5}
+.proto-card ul{list-style:none;padding:0}
+.proto-card li{padding:2px 0 2px 12px;position:relative}
+.proto-card li::before{content:'→';position:absolute;left:0;color:var(--text3);font-size:10px;top:3px}
+.guard-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.guard-item{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--r);padding:10px 12px;font-size:12px}
+.guard-item strong{display:block;font-size:11px;color:var(--red-t);margin-bottom:3px}
+
+.divider{border:none;border-top:0.5px solid var(--border);margin:28px 0}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg-primary: #ffffff; --bg-secondary: #f8f8f6; --bg-tertiary: #f1efe8;
+  --text-primary: #0f0f0e; --text-secondary: #5f5e5a; --text-tertiary: #888780;
+  --border: rgba(0,0,0,0.11); --border-md: rgba(0,0,0,0.18);
+  --info-bg: #e6f1fb; --info-text: #0c447c;
+  --warn-bg: #faeeda; --warn-text: #633806;
+  --success-bg: #eaf3de; --success-text: #27500a;
+  --danger-bg: #fcebeb; --danger-text: #791f1f;
+  --purple-bg: #eeedfe; --purple-text: #3c3489;
+  --radius-md: 8px; --radius-lg: 12px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1c1c1a; --bg-secondary: #232321; --bg-tertiary: #2a2a28;
+    --text-primary: #e8e6df; --text-secondary: #9c9a92; --text-tertiary: #6a6860;
+    --border: rgba(255,255,255,0.09); --border-md: rgba(255,255,255,0.17);
+    --info-bg: #042c53; --info-text: #85b7eb;
+    --warn-bg: #412402; --warn-text: #fac775;
+    --success-bg: #173404; --success-text: #97c459;
+    --danger-bg: #501313; --danger-text: #f09595;
+    --purple-bg: #26215c; --purple-text: #afa9ec;
+  }
+}
+body { font-family: var(--font); background: var(--bg-tertiary); color: var(--text-primary); padding: 24px 16px; min-height: 100vh; }
+.page { max-width: 980px; margin: 0 auto; }
+
+/* Page header */
+.page-header { margin-bottom: 8px; }
+.page-header h1 { font-size: 18px; font-weight: 500; color: var(--text-primary); }
+.page-header p { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
+.header-meta { display: flex; align-items: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.version-pill { font-size: 11px; padding: 3px 9px; border-radius: 20px; background: var(--purple-bg); color: var(--purple-text); font-weight: 500; }
+.change-pill { font-size: 11px; padding: 3px 9px; border-radius: 20px; background: var(--success-bg); color: var(--success-text); font-weight: 500; }
+
+/* Legend bar */
+.legend-bar { display: flex; align-items: center; gap: 10px; margin: 14px 0 10px; flex-wrap: wrap; }
+.legend-bar span { font-size: 11px; color: var(--text-tertiary); }
+.lbadge { font-size: 11px; padding: 3px 9px; border-radius: 10px; font-weight: 500; }
+.l-ai  { background: var(--info-bg);    color: var(--info-text); }
+.l-hu  { background: var(--warn-bg);    color: var(--warn-text); }
+.l-co  { background: var(--success-bg); color: var(--success-text); }
+.l-new { background: var(--purple-bg);  color: var(--purple-text); }
+
+/* Function blocks */
+.fn-block { margin-bottom: 14px; border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-primary); }
+.fn-header { display: flex; align-items: center; gap: 10px; padding: 11px 14px; cursor: pointer; user-select: none; }
+.fn-header:hover { background: var(--bg-secondary); }
+.fn-num { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; }
+.fn-title { font-size: 14px; font-weight: 500; color: var(--text-primary); flex: 1; }
+.fn-sub { font-size: 12px; color: var(--text-secondary); }
+.fn-chevron { font-size: 10px; color: var(--text-tertiary); transition: transform .2s; }
+.fn-chevron.open { transform: rotate(180deg); }
+.fn-body { display: none; border-top: 0.5px solid var(--border); }
+.fn-body.open { display: block; }
+
+/* Table */
+.var-table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
+.var-table thead th {
+  padding: 8px 11px; text-align: left; font-weight: 500; font-size: 11px;
+  color: var(--text-secondary); background: var(--bg-secondary);
+  border-bottom: 0.5px solid var(--border);
+}
+.var-table tbody td { padding: 9px 11px; border-bottom: 0.5px solid var(--border); color: var(--text-primary); vertical-align: top; line-height: 1.5; }
+.var-table tbody tr:last-child td { border-bottom: none; }
+.var-table tbody tr:hover td { background: var(--bg-secondary); }
+.var-table tbody tr.new-row td { background: color-mix(in srgb, var(--purple-bg) 30%, transparent); }
+.var-table tbody tr.new-row:hover td { background: color-mix(in srgb, var(--purple-bg) 50%, transparent); }
+.var-table tbody tr.changed-row td { background: color-mix(in srgb, var(--success-bg) 30%, transparent); }
+.var-table tbody tr.changed-row:hover td { background: color-mix(in srgb, var(--success-bg) 50%, transparent); }
+
+/* Column widths */
+.col-var  { width: 18%; }
+.col-ctrl { width: 13%; }
+.col-what { width: 18%; }
+.col-hu   { width: 22%; }
+.col-ai   { width: 22%; }
+.col-imp  { width: 7%;  }
+
+/* Badges */
+.badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 500; white-space: nowrap; }
+.b-ai  { background: var(--info-bg);    color: var(--info-text); }
+.b-hu  { background: var(--warn-bg);    color: var(--warn-text); }
+.b-co  { background: var(--success-bg); color: var(--success-text); }
+.b-new { background: var(--purple-bg);  color: var(--purple-text); }
+
+/* Impact */
+.imp-hi { color: var(--danger-text);   font-weight: 500; font-size: 11px; }
+.imp-md { color: var(--warn-text);     font-weight: 500; font-size: 11px; }
+.imp-lo { color: var(--text-tertiary); font-size: 11px; }
+
+/* Action cells */
+.action-hu { color: var(--warn-text);  line-height: 1.5; }
+.action-ai { color: var(--info-text);  line-height: 1.5; }
+.action-co { color: var(--success-text); line-height: 1.5; }
+
+/* Variable name with new badge */
+.var-name { display: flex; flex-direction: column; gap: 4px; }
+.var-name-text { font-weight: 500; }
+.new-label { font-size: 10px; font-weight: 500; padding: 1px 5px; border-radius: 4px; background: var(--purple-bg); color: var(--purple-text); display: inline-block; width: fit-content; }
+.changed-label { font-size: 10px; font-weight: 500; padding: 1px 5px; border-radius: 4px; background: var(--success-bg); color: var(--success-text); display: inline-block; width: fit-content; }
+
+/* Responsive */
+@media (max-width: 700px) {
+  .col-hu, .col-ai { display: none; }
+  .col-var { width: 30%; } .col-ctrl { width: 20%; } .col-what { width: 35%; } .col-imp { width: 15%; }
+}
+
+body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);background:var(--bg,#f8f8f6);color:var(--text,#0f0f0e);line-height:1.6}
+.unified-nav{background:var(--purple,#534AB7);padding:0 20px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:200;flex-wrap:wrap}
+.unified-nav .brand{color:#fff;font-size:13px;font-weight:500;padding:10px 0;margin-right:16px;white-space:nowrap;flex-shrink:0}
+.unified-nav a{color:rgba(255,255,255,0.72);font-size:11px;padding:10px 10px;display:block;transition:color .15s;white-space:nowrap}
+.unified-nav a:hover{color:#fff}
+.nav-sep{color:rgba(255,255,255,0.25);padding:10px 2px;font-size:11px}
+.main-content{max-width:1060px;margin:0 auto;padding:28px 20px 60px}
+.section-header{margin:40px 0 14px;padding-bottom:10px;border-bottom:2px solid #534AB7}
+.section-header h2{font-size:18px;font-weight:500;color:var(--text,#0f0f0e)}
+.section-header p{font-size:12px;color:var(--text2,#5f5e5a);margin-top:3px}
+.exec-card{background:#534AB7;border-radius:12px;padding:28px 32px;color:#fff;margin-bottom:20px}
+.exec-card h1{font-size:21px;font-weight:500;margin-bottom:6px}
+.exec-card .sub{font-size:13px;color:rgba(255,255,255,0.78);margin-bottom:18px;max-width:740px;line-height:1.6}
+.exec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.exec-stat{background:rgba(255,255,255,0.14);border-radius:8px;padding:12px 14px}
+.exec-stat h3{font-size:20px;font-weight:500;margin-bottom:2px}
+.exec-stat p{font-size:11px;color:rgba(255,255,255,0.72);line-height:1.3}
+.flow-banner{display:flex;align-items:stretch;gap:0;margin:18px 0 24px;border-radius:10px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.1)}
+.flow-step{flex:1;text-align:center;padding:14px 8px}
+.flow-step h4{font-size:12px;font-weight:500;margin-bottom:3px}
+.flow-step p{font-size:10px;opacity:.82;line-height:1.3}
+.flow-arrow{font-size:20px;display:flex;align-items:center;justify-content:center;padding:0 4px;opacity:.4;flex-shrink:0;background:#fff}
+.fs1{background:#eeedfe;color:#3c3489}
+.fs2{background:#e1f5ee;color:#085041}
+.fs3{background:#faece7;color:#712B13}
+.fs4{background:#e6f1fb;color:#0c447c}
+.fs5{background:#eaf3de;color:#27500a}
+.fn-block{margin-bottom:10px}
+.section{margin-bottom:24px}
+.page{max-width:none;margin:0;padding:0}
+</style>
+</head>
+<body>
+
+<nav class="unified-nav">
+  <span class="brand">PM AI Automation Framework</span>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_7.html#exec">Executive Summary</a>
+  <span class="nav-sep">|</span>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_7.html#matrix">Variable Matrix</a>
+  <span class="nav-sep">|</span>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_7.html#overview">Architecture</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_7.html#agents">Agents</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_7.html#dataflow">Data Flow</a>
+  <span class="nav-sep">|</span>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_7.html#workflows">Workflows</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_7.html#tools">Tools</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_7.html#protocols">Guardrails</a>
+</nav>
+
+<div class="main-content">
+
+<!-- EXECUTIVE SUMMARY -->
+<div id="exec">
+<div class="exec-card">
+  <h1>AI Automation for Performance Marketing — Complete Framework</h1>
+  <p class="sub">A unified playbook for autonomous campaign management, AI creative generation, and performance optimization across Google, Meta, and Affiliates. Built on 38 mapped variables, 8 specialized agents, a 2-hour data loop, and two mandatory human approval gates on all AI-generated assets.</p>
+  <div class="exec-grid">
+    <div class="exec-stat"><h3>38</h3><p>Variables across 8 marketing functions with defined controller</p></div>
+    <div class="exec-stat"><h3>8</h3><p>AI agents covering the full campaign lifecycle</p></div>
+    <div class="exec-stat"><h3>2 hrs</h3><p>Continuous data refresh and optimization cycle</p></div>
+    <div class="exec-stat"><h3>3</h3><p>Channels: Google · Meta · Affiliates</p></div>
+    <div class="exec-stat"><h3>2 gates</h3><p>Human approval on all AI-generated creative</p></div>
+    <div class="exec-stat"><h3>~10 min</h3><p>Daily human review time to govern the system</p></div>
+  </div>
+</div>
+
+<div style="font-size:11px;font-weight:600;color:#888780;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">How the framework flows end-to-end</div>
+<div class="flow-banner">
+  <div class="flow-step fs1"><h4>Human inputs</h4><p>Goals · budget · brief · config</p></div>
+  <div class="flow-arrow">›</div>
+  <div class="flow-step fs2"><h4>Variable control matrix</h4><p>38 variables · human vs. AI ownership</p></div>
+  <div class="flow-arrow">›</div>
+  <div class="flow-step fs3"><h4>AI agent mesh</h4><p>8 agents · 2-hr cycles · guardrails</p></div>
+  <div class="flow-arrow">›</div>
+  <div class="flow-step fs4"><h4>Platform execution</h4><p>Google · Meta · Affiliates APIs</p></div>
+  <div class="flow-arrow">›</div>
+  <div class="flow-step fs5"><h4>Feedback loop</h4><p>Outcomes → DataBricks → improve agents</p></div>
+</div>
+</div>
+
+<!-- VARIABLE MATRIX -->
+<div class="section-header" id="matrix">
+  <h2>Section 1 — Marketing Variable Control Matrix</h2>
+  <p>38 variables across 8 performance marketing functions — defining who controls each and how</p>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+  <span style="font-size:11px;color:#888780">Controller:</span>
+  <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:#faeeda;color:#633806;font-weight:500">Human</span>
+  <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:#e6f1fb;color:#0c447c;font-weight:500">AI agent</span>
+  <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:#eaf3de;color:#27500a;font-weight:500">Collaborative</span>
+  <span style="font-size:11px;color:#888780;margin-left:6px">· Click any function row to expand</span>
+</div>
+
+</div>
+
+
+
+<!-- F1 AUDIENCE — 6 vars -->
+<div class="fn-block">
+<div class="fn-header" onclick="tog(this)">
+  <div class="fn-num" style="background:var(--info-bg);color:var(--info-text)">1</div>
+  <span class="fn-title">Audience &amp; Targeting</span>
+  <span class="fn-sub">Who sees your ads</span>
+  <span class="fn-chevron open">▼</span>
+</div>
+<div class="fn-body open">
+<table class="var-table">
+<thead><tr>
+  <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
+  <th class="col-hu">Human does</th><th class="col-ai">AI agent does</th><th class="col-imp">Impact</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><span class="var-name-text">Audience segments &amp; lookalikes</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Core targeting pools — demographics, interests, intent, and lookalike seeds</td>
+  <td class="action-hu">Defines ICP segments; uploads high-LTV seed lists</td>
+  <td class="action-ai">Monitors segment saturation; schedules CRM sync refreshes</td>
+  <td class="imp-hi">↑↑ CPA, ROAS</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Audience expansion (Advantage+)</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>Platform AI broadens targeting dynamically beyond manual signals</td>
+  <td class="action-hu">Enables/disables; sets hard exclusions</td>
+  <td class="action-ai">Expands per auction; alerts if CPA degrades &gt;20%</td>
+  <td class="imp-hi">↑ Reach &amp; volume</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Exclusion lists</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Suppresses converters, brand blocklists, and competitor sets</td>
+  <td class="action-hu">Defines exclusion categories; approves non-standard additions</td>
+  <td class="action-ai">Auto-syncs recent converters from CRM; monitors coverage gaps</td>
+  <td class="imp-md">↓ CPA waste</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Geo targeting</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Included/excluded regions based on business footprint</td>
+  <td class="action-hu">Sets regions and exclusions per delivery capability</td>
+  <td class="action-ai">Flags underperforming geos above spend threshold for review</td>
+  <td class="imp-md">↑ Relevance, ↓ waste</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Segment bid modifiers</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>Bid multipliers by device, hour, and day applied to base bid</td>
+  <td class="action-hu">Sets max multiplier guardrails (e.g. ±50%)</td>
+  <td class="action-ai">Applies modifiers every 2 hrs from live CVR data; rolls back on CPA spike</td>
+  <td class="imp-md">↓ CPA by segment</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Frequency caps</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>Max impressions per user per time window</td>
+  <td class="action-hu">Sets maximum acceptable frequency ceiling</td>
+  <td class="action-ai">Adjusts dynamically on CTR trend; alerts on fatigue without CVR gain</td>
+  <td class="imp-md">↓ Fatigue &amp; CPC</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- F2 CREATIVE — 9 vars -->
+<div class="fn-block">
+<div class="fn-header" onclick="tog(this)">
+  <div class="fn-num" style="background:var(--info-bg);color:var(--info-text)">2</div>
+  <span class="fn-title">Creative &amp; Messaging</span>
+  <span class="fn-sub">What the ad says and shows</span>
+  <span class="fn-chevron">▼</span>
+</div>
+<div class="fn-body">
+<table class="var-table">
+<thead><tr>
+  <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
+  <th class="col-hu">Human does</th><th class="col-ai">AI agent does</th><th class="col-imp">Impact</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><span class="var-name-text">Ad copy (headline &amp; body)</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>All text variants — hook, value prop, CTA copy</td>
+  <td class="action-co">Human provides direction &amp; templates · AI generates variations by audience &amp; performance · human approves before scaling</td>
+  <td class="action-co">Generates audience-specific variations from performance data; surfaces top performers; flags weak copy for human review</td>
+  <td class="imp-hi">↑↑ CTR, CVR</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Offer / incentive</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Discount depth, free trial, urgency signal in ad and page</td>
+  <td class="action-hu">Decides offer mechanics; gets margin and legal sign-off</td>
+  <td class="action-ai">Monitors offer vs. non-offer CVR lift; alerts on fatigue or expiry</td>
+  <td class="imp-hi">↑↑ CVR</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Image creative &amp; messaging</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Visual concept, scene, text overlays, and CTA on static image ads</td>
+  <td class="action-hu">Briefs and approves concept and on-image copy</td>
+  <td class="action-ai">Pre-scores via Pencil AI; flags high text density and message mismatch</td>
+  <td class="imp-hi">↑↑ CTR, ROAS</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Image asset management</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>Format/ratio coverage, variant rotation, winner promotion, and fatigue detection</td>
+  <td class="action-hu">Supplies master assets; approves large budget concentration on one winner</td>
+  <td class="action-ai">Auto-crops for placements; rotates variants; promotes winner; pauses on CTR drop &gt;25%</td>
+  <td class="imp-hi">↑ CTR, ↓ waste</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Video creative direction</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Hook (0–3s), narrative arc, and cut length per placement</td>
+  <td class="action-hu">Scripts hook; approves length per placement (6s / 15s / 30s+)</td>
+  <td class="action-ai">Measures 3-sec view rate and completion; recommends cut length by placement</td>
+  <td class="imp-hi">↑↑ VTR, CVR</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Video production assets</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Captions, thumbnail, and end-card CTA produced alongside the video</td>
+  <td class="action-hu">Reviews caption accuracy; approves thumbnail and end-card copy</td>
+  <td class="action-ai">Auto-generates captions; A/B tests thumbnails; flags missing captions pre-launch</td>
+  <td class="imp-md">↑ VTR (silent), ↑ CTR</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Video asset management</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>Variant rotation, winner selection, and fatigue detection across active video ads</td>
+  <td class="action-hu">Supplies creative pool; commissions new video or approves re-edit on alert</td>
+  <td class="action-ai">Rotates by predicted CVR; promotes winner; alerts on CVR drop &gt;30%; recommends re-edit vs. full replacement</td>
+  <td class="imp-hi">↑ ROAS, ↓ CPA</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Ad format selection</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Format type: responsive, static, video, carousel, PMax asset group, Advantage+ catalogue</td>
+  <td class="action-hu">Standard campaigns: selects format. Advantage+ / PMax: provides asset pool only</td>
+  <td class="action-ai">Advantage+ &amp; PMax: selects format per auction in real time; alerts if one format consumes &gt;80% budget without return</td>
+  <td class="imp-md">↑ Placement coverage</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Creative performance scoring</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>Pre-launch CTR/CVR prediction to validate creative before spend is committed</td>
+  <td class="action-hu">Reviews score; decides to proceed, revise, or cancel production</td>
+  <td class="action-ai">Runs Pencil AI scoring on brief; benchmarks vs. account history; returns predicted CTR, CVR, and fatigue timeline</td>
+  <td class="imp-md">↓ Test waste</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- F3 BIDDING & BUDGET — 6 vars (bid cap removed) -->
+<div class="fn-block">
+<div class="fn-header" onclick="tog(this)">
+  <div class="fn-num" style="background:var(--info-bg);color:var(--info-text)">3</div>
+  <span class="fn-title">Bidding &amp; Budget</span>
+  <span class="fn-sub">How much you spend and where</span>
+  <span class="fn-chevron">▼</span>
+</div>
+<div class="fn-body">
+<table class="var-table">
+<thead><tr>
+  <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
+  <th class="col-hu">Human does</th><th class="col-ai">AI agent does</th><th class="col-imp">Impact</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><span class="var-name-text">Bid strategy type</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>tCPA / tROAS / Maximise conversions / Manual CPC</td>
+  <td class="action-hu">Selects strategy based on data maturity and objective</td>
+  <td class="action-ai">Alerts if conversion volume falls below minimum for strategy to function</td>
+  <td class="imp-hi">↑↑ CPA, ROAS</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">tCPA / tROAS target value</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Numerical goal the platform bid algorithm optimises toward</td>
+  <td class="action-hu">Sets initial target from margin; approves changes outside ±15%</td>
+  <td class="action-ai">Recommends adjustments from 7-day trends; auto-applies within ±15% guardrail</td>
+  <td class="imp-hi">↑↑ Goal alignment</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Bid adjustments by segment</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>Multipliers on base bid by device, geo, time, and audience</td>
+  <td class="action-hu">Sets max multiplier guardrails</td>
+  <td class="action-ai">Calculates and applies every 2 hrs; auto-rolls back on CPA spike &gt;20%</td>
+  <td class="imp-hi">↓ CPA by segment</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Daily / lifetime budget</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Spend ceiling per campaign; governs total volume and pacing</td>
+  <td class="action-hu">Sets and approves all budgets; manages monthly plan vs. pacing</td>
+  <td class="action-ai">Monitors pacing; alerts on early exhaustion or significant underspend</td>
+  <td class="imp-hi">↑ Volume &amp; pacing</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Budget reallocation</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Shifting budget across campaigns toward highest-ROAS performers</td>
+  <td class="action-hu">Approves shifts &gt;15% of any campaign's daily budget; sets floor budgets</td>
+  <td class="action-ai">Identifies top performers daily; auto-applies shifts within ±15% guardrail; logs all actions</td>
+  <td class="imp-hi">↑ Portfolio ROAS</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Audience bid modifiers</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>Upweights high-value customer segments above base bid</td>
+  <td class="action-hu">Defines HVC segment criteria; sets max upweight ceiling</td>
+  <td class="action-ai">Calculates ROAS differential between HVC and cold; updates modifiers weekly</td>
+  <td class="imp-hi">↑ ROAS from HVC</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- F4 LANDING PAGE — consolidated to 2 vars -->
+<div class="fn-block">
+<div class="fn-header" onclick="tog(this)">
+  <div class="fn-num" style="background:var(--info-bg);color:var(--info-text)">4</div>
+  <span class="fn-title">Landing Page &amp; Conversion</span>
+  <span class="fn-sub">What happens after the click</span>
+  <span class="fn-chevron">▼</span>
+</div>
+<div class="fn-body">
+<table class="var-table">
+<thead><tr>
+  <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
+  <th class="col-hu">Human does</th><th class="col-ai">AI agent does</th><th class="col-imp">Impact</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><span class="var-name-text">Page experience &amp; conversion path</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Load speed, message match, form length, CTA copy/placement — the direct levers on post-click CVR</td>
+  <td class="action-hu">Prioritises speed fixes; ensures ad-to-page message match; reduces form fields; approves CTA variants</td>
+  <td class="action-ai">Monitors Core Web Vitals and bounce rate; flags message mismatch via NLP; identifies highest-abandonment form fields; A/B tests CTA variants</td>
+  <td class="imp-hi">↑↑ CVR, ↓ CPA</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Conversion tracking &amp; funnel health</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>Pixel accuracy, event firing consistency, and funnel drop-off detection — data quality upstream of all optimisation</td>
+  <td class="action-hu">Fixes broken tags on alert; decides which funnel steps to prioritise for engineering</td>
+  <td class="action-ai">Monitors pixel firing rate continuously; alerts within 1 hr of tracking drop; surfaces highest-volume funnel drop-off steps</td>
+  <td class="imp-hi">↑ Data quality, ↓ CPA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- F5 CAMPAIGN STRUCTURE — 7 vars unchanged -->
+<div class="fn-block">
+<div class="fn-header" onclick="tog(this)">
+  <div class="fn-num" style="background:var(--warn-bg);color:var(--warn-text)">5</div>
+  <span class="fn-title">Campaign Structure &amp; Setup</span>
+  <span class="fn-sub">Architecture that shapes every result</span>
+  <span class="fn-chevron">▼</span>
+</div>
+<div class="fn-body">
+<table class="var-table">
+<thead><tr>
+  <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
+  <th class="col-hu">Human does</th><th class="col-ai">AI agent does</th><th class="col-imp">Impact</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><span class="var-name-text">Campaign objective</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>What the platform optimises for — conversions, leads, traffic, or awareness</td>
+  <td class="action-hu">Sets at launch; changes only when business goal shifts</td>
+  <td class="action-ai">Flags objective-metric drift; alerts on conversion volume below learning threshold</td>
+  <td class="imp-hi">↑↑ Goal alignment</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Campaign type</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Search / PMax / DSA / Shopping / Display / Advantage+ — determines inventory and automation level</td>
+  <td class="action-hu">Selects type based on funnel stage and objective</td>
+  <td class="action-ai">Tracks performance by type; surfaces recommendation if one type consistently outperforms on ROAS</td>
+  <td class="imp-hi">↑↑ Reach &amp; cost</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Ad group / ad set structure</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Granularity of theme grouping — fragmentation starves Smart Bidding of signal</td>
+  <td class="action-hu">Designs groupings; consolidates when conversion volume is low</td>
+  <td class="action-ai">Flags groups below 30 conv/month as consolidation candidates</td>
+  <td class="imp-hi">↑ QS &amp; algo efficiency</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Keyword strategy</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Match types and negative keyword lists — controls query relevance and CPA waste</td>
+  <td class="action-hu">Sets match type strategy; defines exclusion themes; decides when to migrate to broad</td>
+  <td class="action-ai">Scans Search Term Reports daily; auto-adds low-risk negatives; queues edge cases for review</td>
+  <td class="imp-hi">↓ CPA, ↑ relevance</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Ad extensions / assets</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Sitelinks, callouts, structured snippets — increase ad real estate and Quality Score</td>
+  <td class="action-hu">Writes and uploads extension content</td>
+  <td class="action-ai">Monitors per-extension CTR; pauses underperformers; flags missing types</td>
+  <td class="imp-md">↑ CTR, QS</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Conversion window</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>How far back a click is credited — must match actual purchase cycle length</td>
+  <td class="action-hu">Sets window to match purchase cycle; approves any changes</td>
+  <td class="action-ai">Flags systematic misalignment between attributed and actual revenue by window</td>
+  <td class="imp-md">↑ Attribution accuracy</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Learning period management</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Protecting algorithm learning after structural changes — disruption resets the clock</td>
+  <td class="action-hu">Batches structural changes; imposes edit freeze until learning exits</td>
+  <td class="action-ai">Detects "Limited by learning"; blocks non-urgent automated changes; alerts if learning exceeds 14 days</td>
+  <td class="imp-md">↓ CPA instability</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- F6 ATTRIBUTION — 3 vars (3 removed) -->
+<div class="fn-block">
+<div class="fn-header" onclick="tog(this)">
+  <div class="fn-num" style="background:var(--warn-bg);color:var(--warn-text)">6</div>
+  <span class="fn-title">Attribution &amp; Measurement</span>
+  <span class="fn-sub">What you count and how you credit it</span>
+  <span class="fn-chevron">▼</span>
+</div>
+<div class="fn-body">
+<table class="var-table">
+<thead><tr>
+  <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
+  <th class="col-hu">Human does</th><th class="col-ai">AI agent does</th><th class="col-imp">Impact</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><span class="var-name-text">Attribution model</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Which touchpoint gets credit — directly determines which channel receives budget</td>
+  <td class="action-hu">Selects model based on buyer journey; defines which model governs budget decisions</td>
+  <td class="action-ai">Compares performance across model scenarios; flags if last-click is over-crediting one channel</td>
+  <td class="imp-hi">↑↑ Budget decisions</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Conversion event &amp; value definition</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>What counts as a conversion and its assigned value — the core signal the algorithm optimises toward</td>
+  <td class="action-hu">Defines primary and micro events; decides static vs. dynamic value; aligns with finance</td>
+  <td class="action-ai">Monitors event firing and deduplication; alerts on anomalies; validates dynamic values vs. actual revenue</td>
+  <td class="imp-hi">↑↑ Optimisation signal</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">MMM model inputs</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Historical spend and conversion data fed into media mix modelling for strategic allocation</td>
+  <td class="action-hu">Validates model inputs; interprets MMM output for allocation decisions</td>
+  <td class="action-ai">Extracts and formats spend/conversion data for MMM ingestion; schedules quarterly model refresh</td>
+  <td class="imp-hi">↑ Channel mix accuracy</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- F7 CHANNEL MIX — 3 vars (2 removed) -->
+<div class="fn-block">
+<div class="fn-header" onclick="tog(this)">
+  <div class="fn-num" style="background:var(--warn-bg);color:var(--warn-text)">7</div>
+  <span class="fn-title">Channel Mix &amp; Allocation</span>
+  <span class="fn-sub">Where budgets flow across channels</span>
+  <span class="fn-chevron">▼</span>
+</div>
+<div class="fn-body">
+<table class="var-table">
+<thead><tr>
+  <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
+  <th class="col-hu">Human does</th><th class="col-ai">AI agent does</th><th class="col-imp">Impact</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><span class="var-name-text">Channel budget split</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>% of total budget per channel (Google / Meta / Affiliates)</td>
+  <td class="action-hu">Sets monthly allocation from strategy and MMM output; approves significant shifts</td>
+  <td class="action-ai">Models scenario impact of mix changes; surfaces monthly recommendation</td>
+  <td class="imp-hi">↑↑ Portfolio ROAS</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Dynamic cross-channel reallocation</span></td>
+  <td><span class="badge b-co">Collaborative</span></td>
+  <td>Daily AI-driven budget shifts between channels based on live ROAS signal</td>
+  <td class="action-hu">Sets max daily shift limits; approves shifts above guardrail; reviews weekly log</td>
+  <td class="action-ai">Calculates daily ROAS by channel; applies reallocation within ±15% guardrail; logs all actions</td>
+  <td class="imp-hi">↑ Portfolio ROAS</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Funnel stage allocation</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Awareness vs. consideration vs. conversion spend ratio</td>
+  <td class="action-hu">Sets ratios based on growth stage and pipeline health; reviews quarterly</td>
+  <td class="action-ai">Monitors upper-funnel leading indicators; alerts when mid-funnel drop signals awareness underinvestment</td>
+  <td class="imp-md">↑ Full-funnel health</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- F8 REPORTING — consolidated to 2 vars -->
+<div class="fn-block">
+<div class="fn-header" onclick="tog(this)">
+  <div class="fn-num" style="background:var(--warn-bg);color:var(--warn-text)">8</div>
+  <span class="fn-title">Reporting &amp; Optimisation Cadence</span>
+  <span class="fn-sub">How fast you learn and act</span>
+  <span class="fn-chevron">▼</span>
+</div>
+<div class="fn-body">
+<table class="var-table">
+<thead><tr>
+  <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
+  <th class="col-hu">Human does</th><th class="col-ai">AI agent does</th><th class="col-imp">Impact</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><span class="var-name-text">Automated monitoring &amp; alerts</span></td>
+  <td><span class="badge b-ai">AI agent</span></td>
+  <td>KPI thresholds, anomaly detection, and bi-hourly report delivery — the continuous intelligence layer</td>
+  <td class="action-hu">Defines alert thresholds and cadence policy; configures delivery routing (WA / email / Slack)</td>
+  <td class="action-ai">Polls APIs every 2 hrs; detects anomalies vs. baseline; runs GPT-4o summarisation; delivers report with top 3 recommended actions</td>
+  <td class="imp-hi">↓ Reaction lag</td>
+</tr>
+<tr>
+  <td><span class="var-name-text">Optimisation review &amp; guardrails</span></td>
+  <td><span class="badge b-hu">Human</span></td>
+  <td>Agent action queue review, guardrail thresholds, and strategic cadence — where human judgment governs AI autonomy</td>
+  <td class="action-hu">Reviews action queue daily (10 min); approves or overrides; expands guardrails monthly as confidence grows; conducts weekly strategic review</td>
+  <td class="action-ai">Generates prioritised action queue with confidence score and rollback plan; logs outcomes to support guardrail relaxation decisions</td>
+  <td class="imp-hi">↑ Action quality &amp; ROAS</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- .page -->
+
+<!-- ARCHITECTURE -->
+<div class="section-header" id="overview" style="margin-top:48px">
+  <h2>Section 2 — AI Agent Architecture &amp; Workflows</h2>
+  <p>8-agent mesh from human strategy inputs to autonomous platform execution, creative generation, and closed-loop optimization</p>
+</div>
+
+
+
+<!-- SECTION 1: ARCHITECTURE OVERVIEW -->
+<div class="section" id="overview">
+  <div class="section-title">System Architecture Overview</div>
+  <div class="section-sub">Layered agent mesh — from human strategy input to autonomous platform execution</div>
+
+  <div class="arch-wrap">
+    <!-- L1 Human -->
+    <div class="arch-layer">
+      <div class="arch-layer-label">Layer 1 — Human strategy inputs (one-time or infrequent)</div>
+      <div class="arch-boxes">
+        <div class="arch-box hu"><h5>Business goals</h5><p>CPA / ROAS targets, revenue objectives</p></div>
+        <div class="arch-box hu"><h5>Budget plan</h5><p>Channel allocation, monthly ceilings</p></div>
+        <div class="arch-box hu"><h5>Creative brief</h5><p>Offer, brand guidelines, ICP definition</p></div>
+        <div class="arch-box hu"><h5>Campaign structure</h5><p>Objective, type, audience seeds, LP URLs</p></div>
+        <div class="arch-box hu"><h5>Measurement config</h5><p>Attribution model, conversion events, thresholds</p></div>
+      </div>
+    </div>
+    <div class="arch-arrow">▼  inputs flow into orchestrator</div>
+
+    <!-- L2 Orchestrator -->
+    <div class="arch-layer" style="background:var(--purple-l)">
+      <div class="arch-layer-label">Layer 2 — Orchestrator agent (LangGraph + GPT-4o)</div>
+      <div class="arch-boxes">
+        <div class="arch-box orch wide"><h5>Master Orchestrator</h5><p>Routes tasks to subagents · manages priorities · enforces guardrails · routes human escalations · maintains shared state in Redis · logs all actions to DataBricks audit table</p></div>
+        <div class="arch-box orch"><h5>Human approval queue</h5><p>Actions above autonomy threshold → Slack/email with approve/reject buttons</p></div>
+        <div class="arch-box orch"><h5>Action log &amp; rollback</h5><p>Every automated change stored with rollback instructions · 30-day history</p></div>
+      </div>
+    </div>
+    <div class="arch-arrow">▼  tasks dispatched to subagents</div>
+
+    <!-- L3 Subagents -->
+    <div class="arch-layer">
+      <div class="arch-layer-label">Layer 3 — Specialized subagents</div>
+      <div class="arch-boxes">
+        <div class="arch-box data"><h5>Data Synchronization Agent</h5><p>Pulls from all platforms every 2 hrs</p></div>
+        <div class="arch-box data"><h5>KPI Monitor Agent</h5><p>Anomaly detection &amp; alert classification</p></div>
+        <div class="arch-box camp"><h5>Campaign Optimization Agent</h5><p>Bids, budgets, keywords, structure</p></div>
+        <div class="arch-box cre"><h5>Creative Intelligence Agent</h5><p>Scoring, rotation, fatigue detection · dispatches to Creative Generation Sub-Agent</p></div>
+        <div class="arch-box cre"><h5>Creative Generation Sub-Agent</h5><p>AI video, audio &amp; image generation from approved brief</p></div>
+        <div class="arch-box data"><h5>Audience Intelligence Agent</h5><p>Segment monitoring, CRM sync, exclusions</p></div>
+        <div class="arch-box rep"><h5>Reporting &amp; Delivery Agent</h5><p>Assembly, summarization, delivery</p></div>
+      </div>
+    </div>
+    <div class="arch-arrow">▼ / ↑  bidirectional data and actions</div>
+
+    <!-- L4 Data -->
+    <div class="arch-layer" style="background:var(--blue-l)">
+      <div class="arch-layer-label">Layer 4 — Data infrastructure</div>
+      <div class="arch-boxes">
+        <div class="arch-box data"><h5>DataBricks — Bronze</h5><p>Raw API ingestion via Airbyte</p></div>
+        <div class="arch-box data"><h5>DataBricks — Silver</h5><p>dbt transforms, normalized schema</p></div>
+        <div class="arch-box data"><h5>DataBricks — Gold</h5><p>KPIs, aggregates, agent-ready datasets</p></div>
+        <div class="arch-box data"><h5>Redis</h5><p>Agent state, memory, action queue</p></div>
+        <div class="arch-box data"><h5>Audit Log (Delta Lake)</h5><p>All agent actions, outcomes, rollback records</p></div>
+      </div>
+    </div>
+    <div class="arch-arrow">▼ / ↑  raw data in, actions out</div>
+
+    <!-- L5 Platforms -->
+    <div class="arch-layer">
+      <div class="arch-layer-label">Layer 5 — Platform connectors (Airbyte inbound · Platform APIs outbound)</div>
+      <div class="arch-boxes">
+        <div class="arch-box plat"><h5>Google Ads API v17</h5><p>Search, PMax, Display, Shopping</p></div>
+        <div class="arch-box plat"><h5>Meta Marketing API v20</h5><p>Advantage+, Standard, Catalog</p></div>
+        <div class="arch-box plat"><h5>Appsflyer (MMP)</h5><p>Mobile attribution, in-app events, LTV</p></div>
+        <div class="arch-box plat"><h5>Google Analytics 4</h5><p>Web sessions, funnel behavior, page CVR</p></div>
+        <div class="arch-box plat"><h5>DataBricks (internal)</h5><p>CRM, revenue, product catalog, LTV data</p></div>
+        <div class="arch-box plat"><h5>Impact.com / PartnerStack</h5><p>Affiliate publisher data, commissions</p></div>
+      </div>
+    </div>
+    <div class="arch-arrow">▼  outputs delivered</div>
+
+    <!-- L6 Output -->
+    <div class="arch-layer">
+      <div class="arch-layer-label">Layer 6 — Output channels</div>
+      <div class="arch-boxes">
+        <div class="arch-box out"><h5>WhatsApp Business API</h5><p>Bi-hourly alerts, critical escalations</p></div>
+        <div class="arch-box out"><h5>Gmail API</h5><p>Daily/weekly performance reports</p></div>
+        <div class="arch-box out"><h5>Looker Studio</h5><p>Live dashboard, always-on</p></div>
+        <div class="arch-box out"><h5>Slack</h5><p>Approval queue, team notifications</p></div>
+        <div class="arch-box out"><h5>Platform APIs</h5><p>Bid changes, budget shifts, creative rotations written back</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: HUMAN INPUTS -->
+<div class="section" id="inputs">
+  <div class="section-title">Human Inputs Required to Start</div>
+  <div class="section-sub">Assumptions made — one-time setup inputs before the agent mesh runs autonomously</div>
+  <div class="assumption-grid">
+    <div class="assumption-card">
+      <h4>Business objectives</h4>
+      <ul>
+        <li>Primary KPI: target CPA or target ROAS per channel</li>
+        <li>Revenue target (monthly/quarterly)</li>
+        <li>Acceptable CPA ceiling (hard stop rule)</li>
+        <li>Growth vs. efficiency mode toggle</li>
+      </ul>
+    </div>
+    <div class="assumption-card">
+      <h4>Budget plan</h4>
+      <ul>
+        <li>Total monthly budget by channel (Google / Meta / Affiliates)</li>
+        <li>Daily budget per campaign (floor and ceiling)</li>
+        <li>Maximum daily reallocation limit (%)</li>
+        <li>Seasonal uplift calendar (peak dates and uplift %)</li>
+      </ul>
+    </div>
+    <div class="assumption-card">
+      <h4>Campaign configuration</h4>
+      <ul>
+        <li>Campaign objective per channel (conversions, leads, traffic)</li>
+        <li>Campaign type (PMax, Search, Advantage+, etc.)</li>
+        <li>Conversion window (days) per channel</li>
+        <li>Attribution model selection</li>
+      </ul>
+    </div>
+    <div class="assumption-card">
+      <h4>Audience &amp; targeting</h4>
+      <ul>
+        <li>ICP definition (demographics, interests, intent signals)</li>
+        <li>High-LTV seed list (CSV from CRM — min. 1,000 records)</li>
+        <li>Geo inclusions and exclusions</li>
+        <li>Frequency cap ceiling per channel</li>
+      </ul>
+    </div>
+    <div class="assumption-card">
+      <h4>Creative assets</h4>
+      <ul>
+        <li>Brand guidelines (colors, fonts, tone, logo files)</li>
+        <li>Offer brief (discount, CTA, key value props)</li>
+        <li>Initial creative pool (min. 3 images + 2 videos)</li>
+        <li>Prohibited content list (legal, competitor mentions)</li>
+      </ul>
+    </div>
+    <div class="assumption-card">
+      <h4>Measurement &amp; tracking</h4>
+      <ul>
+        <li>Conversion event names (purchase, lead, add-to-cart)</li>
+        <li>Dynamic revenue value: yes/no + implementation method</li>
+        <li>Appsflyer app ID and event mapping (if mobile)</li>
+        <li>GA4 property ID and goal event names</li>
+      </ul>
+    </div>
+    <div class="assumption-card">
+      <h4>Platform access</h4>
+      <ul>
+        <li>Google Ads account IDs + API OAuth credentials</li>
+        <li>Meta Ad Account IDs + System User token</li>
+        <li>Appsflyer API token + app IDs</li>
+        <li>DataBricks workspace URL + service principal</li>
+      </ul>
+    </div>
+    <div class="assumption-card">
+      <h4>Alert &amp; escalation config</h4>
+      <ul>
+        <li>KPI alert thresholds (e.g. CPA &gt;50% above target = critical)</li>
+        <li>Escalation routing (who gets WA vs. email vs. Slack)</li>
+        <li>Agent autonomy guardrails (bid cap ±%, budget shift ±%)</li>
+        <li>Review cadence preference (daily queue review time)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: AGENT REGISTRY -->
+<div class="section" id="agents">
+  <div class="section-title">Agent Registry</div>
+  <div class="section-sub">8 agents (incl. Creative Generation Sub-Agent) — click any to expand full specification</div>
+  <div class="agent-grid">
+
+    <!-- ORCHESTRATOR -->
+    <div class="agent-card full">
+      <div class="ac-header" onclick="toggleAgent(this)" style="background:var(--purple-l)">
+        <div class="ac-dot" style="background:var(--purple);color:#fff">O</div>
+        <div class="ac-info">
+          <div class="ac-name">Orchestrator Agent — Master Controller</div>
+          <div class="ac-role">Routes tasks · enforces guardrails · manages human escalation queue · holds shared state</div>
+        </div>
+        <div class="ac-chev open">▼</div>
+      </div>
+      <div class="ac-body open">
+        <div class="ac-row"><span class="ac-row-label">Framework</span><span class="ac-row-val">LangGraph (stateful multi-agent) + GPT-4o reasoning engine</span></div>
+        <div class="ac-row"><span class="ac-row-label">State store</span><span class="ac-row-val">Redis — holds current agent states, active tasks, pending approvals, action queue</span></div>
+        <div class="ac-row"><span class="ac-row-label">Triggers</span><span class="ac-row-val">Scheduled (every 2 hrs) · Event-driven (KPI alert from KPI Monitor) · Manual (human override via Slack command)</span></div>
+        <div class="ac-row"><span class="ac-row-label">Core decisions</span><span class="ac-row-val">Classify action urgency (auto-execute vs. human queue) · Dispatch to correct subagent · Apply guardrail checks before any write action · Deduplicate conflicting agent recommendations</span></div>
+        <div class="ac-row"><span class="ac-row-label">Escalation logic</span><span class="ac-row-val">Confidence score &lt;0.75 → human queue. Action impact &gt;guardrail threshold → human queue. Campaign pause or new campaign → always human. All else → auto-execute + log</span></div>
+        <div class="ac-row"><span class="ac-row-label">Protocol</span><span class="ac-row-val">Publishes to Redis Pub/Sub channels. Subagents subscribe to their domain topic. All messages in standard JSON envelope: {agent_id, action_type, payload, confidence, rollback_fn, timestamp}</span></div>
+        <div class="ac-row"><span class="ac-row-label">Audit</span><span class="ac-row-val">Writes every action to DataBricks Delta Lake audit table with full payload, agent version, confidence score, and outcome (measured 2 hrs post-action)</span></div>
+        <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-guard">Guarded</span> — executes autonomously within guardrails; escalates outside them</span></div>
+      </div>
+    </div>
+
+    <!-- DATA SYNC AGENT -->
+    <div class="agent-card">
+      <div class="ac-header" onclick="toggleAgent(this)" style="background:var(--blue-l)">
+        <div class="ac-dot" style="background:var(--blue);color:#fff">DS</div>
+        <div class="ac-info">
+          <div class="ac-name">Data Sync Agent</div>
+          <div class="ac-role">Ingests all platform data into DataBricks every 2 hrs</div>
+        </div>
+        <div class="ac-chev">▼</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-row"><span class="ac-row-label">Schedule</span><span class="ac-row-val">Every 2 hours (performance) · Daily 2 AM (creative, audience, search terms) · Real-time via webhooks where available (Appsflyer)</span></div>
+        <div class="ac-row"><span class="ac-row-label">Sources</span><span class="ac-row-val">Google Ads API · Meta Marketing API · Appsflyer Pull API · GA4 Data API · DataBricks internal tables (CRM, revenue, catalog)</span></div>
+        <div class="ac-row"><span class="ac-row-label">Ingestion tool</span><span class="ac-row-val">Airbyte (managed connectors for all sources → DataBricks Bronze layer). Fallback: custom Python scripts via Google Ads Client Library + Meta SDK</span></div>
+        <div class="ac-row"><span class="ac-row-label">Transform</span><span class="ac-row-val">dbt models on DataBricks: Bronze (raw) → Silver (normalized, deduped, type-cast) → Gold (KPI aggregates, channel-normalized metrics, agent-ready views)</span></div>
+        <div class="ac-row"><span class="ac-row-label">Key output tables</span><span class="ac-row-val">gold.campaign_performance · gold.creative_performance · gold.audience_performance · gold.funnel_steps · gold.attribution_view · gold.affiliate_publisher_quality</span></div>
+        <div class="ac-row"><span class="ac-row-label">Tools</span><span><div class="tag-row"><span class="tag tag-bl">Airbyte</span><span class="tag tag-bl">dbt Core</span><span class="tag tag-bl">DataBricks</span><span class="tag tag-bl">Delta Lake</span><span class="tag tag-gy">Appsflyer Pull API</span></div></span></div>
+        <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-full">Fully automated</span></span></div>
+      </div>
+    </div>
+
+    <!-- KPI MONITOR AGENT -->
+    <div class="agent-card">
+      <div class="ac-header" onclick="toggleAgent(this)" style="background:var(--blue-l)">
+        <div class="ac-dot" style="background:var(--blue);color:#fff">KM</div>
+        <div class="ac-info">
+          <div class="ac-name">KPI Monitor Agent</div>
+          <div class="ac-role">Detects anomalies · classifies severity · routes alerts</div>
+        </div>
+        <div class="ac-chev">▼</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-row"><span class="ac-row-label">Trigger</span><span class="ac-row-val">Runs immediately after Data Sync completes (every 2 hrs)</span></div>
+        <div class="ac-row"><span class="ac-row-label">Inputs</span><span class="ac-row-val">gold.campaign_performance vs. 7-day rolling baseline · human-defined alert thresholds from Redis config store</span></div>
+        <div class="ac-row"><span class="ac-row-label">Detection method</span><span class="ac-row-val">Statistical z-score on ROAS, CPA, CTR, CVR, spend pacing per campaign · GPT-4o classifies root cause category (creative fatigue, audience saturation, tracking gap, competitor pressure, algo learning)</span></div>
+        <div class="ac-row"><span class="ac-row-label">Severity tiers</span><span class="ac-row-val">CRITICAL (CPA &gt;50% above target or ROAS &gt;30% below) → immediate WA alert + Orchestrator dispatch. WARNING (10–50% deviation) → next report cycle. INFO (&lt;10%) → daily digest only</span></div>
+        <div class="ac-row"><span class="ac-row-label">Output</span><span class="ac-row-val">Alert event → Orchestrator (to dispatch to relevant agent) + Reporting Agent (to include in next report). Root cause classification + affected campaigns/creatives/audiences</span></div>
+        <div class="ac-row"><span class="ac-row-label">Tools</span><span><div class="tag-row"><span class="tag tag-bl">GPT-4o</span><span class="tag tag-bl">Pandas / PySpark</span><span class="tag tag-bl">DataBricks Gold</span><span class="tag tag-bl">Redis</span></div></span></div>
+        <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-full">Fully automated</span> — detects and routes; never writes to platforms directly</span></div>
+      </div>
+    </div>
+
+    <!-- CAMPAIGN OPTIMIZATION AGENT -->
+    <div class="agent-card">
+      <div class="ac-header" onclick="toggleAgent(this)" style="background:var(--teal-l)">
+        <div class="ac-dot" style="background:var(--teal);color:#fff">CO</div>
+        <div class="ac-info">
+          <div class="ac-name">Campaign Optimization Agent</div>
+          <div class="ac-role">Bids · budgets · keywords · audience modifiers</div>
+        </div>
+        <div class="ac-chev">▼</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-row"><span class="ac-row-label">Trigger</span><span class="ac-row-val">Post-KPI-Monitor on every 2-hr cycle · Immediately on CRITICAL alert from KPI Monitor</span></div>
+        <div class="ac-row"><span class="ac-row-label">Variables managed</span><span class="ac-row-val">tCPA/tROAS target · Bid adjustments by segment · Budget reallocation · Audience bid modifiers · Keyword negatives · Learning period protection</span></div>
+        <div class="ac-row"><span class="ac-row-label">Bid logic</span><span class="ac-row-val">Reads live CVR by device/geo/hour from Gold layer → calculates optimal bid modifier → applies via Google Ads API / Meta Marketing API. Guardrail: ±20% per cycle. Rolls back automatically if CPA spikes &gt;20% in next cycle.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Budget logic</span><span class="ac-row-val">Ranks campaigns by ROAS daily → calculates reallocation within ±15% of each campaign's budget → applies. &gt;15% shift or pause → queued to human. Floor budgets enforced per campaign config.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Keyword agent</span><span class="ac-row-val">Pulls Search Term Report daily → NLP classification (relevant / irrelevant / brand) → auto-adds low-risk negatives → queues high-risk for human review (e.g. competitor brand terms)</span></div>
+        <div class="ac-row"><span class="ac-row-label">Learning guard</span><span class="ac-row-val">Checks "Limited by learning" status before any change. Blocks non-urgent actions. Alerts human if learning period &gt;14 days.</span></div>
+        <div class="ac-row"><span class="ac-row-label">APIs used</span><span><div class="tag-row"><span class="tag tag-gy">Google Ads API v17</span><span class="tag tag-gy">Meta Marketing API v20</span><span class="tag tag-tl">Impact.com API</span></div></span></div>
+        <div class="ac-row"><span class="ac-row-label">Tools</span><span><div class="tag-row"><span class="tag tag-bl">LangChain Tools</span><span class="tag tag-bl">GPT-4o</span><span class="tag tag-tl">Google Ads Python Client</span><span class="tag tag-tl">Meta Business SDK</span></div></span></div>
+        <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-guard">Guarded</span> — auto within guardrails; human queue for budget &gt;15%, campaign pause, or bid strategy type change</span></div>
+      </div>
+    </div>
+
+    <!-- CREATIVE INTELLIGENCE AGENT -->
+    <div class="agent-card">
+      <div class="ac-header" onclick="toggleAgent(this)" style="background:var(--coral-l)">
+        <div class="ac-dot" style="background:var(--coral);color:#fff">CI</div>
+        <div class="ac-info">
+          <div class="ac-name">Creative Intelligence Agent</div>
+          <div class="ac-role">Scoring · rotation · fatigue detection · brief generation · dispatches to Creative Generation Sub-Agent</div>
+        </div>
+        <div class="ac-chev">▼</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-row"><span class="ac-row-label">Sub-agents</span><span class="ac-row-val">Creative Generation Sub-Agent (video + audio + image) · Image Asset Manager · Copy Optimizer — all dispatched via Orchestrator</span></div>
+        <div class="ac-row"><span class="ac-row-label">Pre-launch scoring</span><span class="ac-row-val">Any new brief (human-submitted or AI-generated on fatigue) → Pencil AI API scores predicted CTR, CVR, fatigue timeline → score + brief surfaced to human in Slack approval queue. Below-threshold concepts blocked before generation spend is committed.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Generation dispatch</span><span class="ac-row-val">On human brief approval: publishes task to Orchestrator with brief payload, format specs, channel targets, and brand guardrail config. Orchestrator dispatches to Creative Generation Sub-Agent. Agent returns draft assets to approval queue — nothing goes live without human sign-off.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Rotation logic</span><span class="ac-row-val">Reads gold.creative_performance every 2 hrs. Thompson Sampling (multi-armed bandit) distributes impressions. At 95% statistical confidence → promotes winner, deprioritises others via platform API. No single variant exceeds 70% impression share before confidence is reached.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Fatigue detection</span><span class="ac-row-val">Image: 7-day CTR drops &gt;25% vs. peak → auto-pause + generation brief triggered. Video: 7-day CVR drops &gt;30% vs. peak → GPT-4o classifies root cause (hook failure / offer fatigue / audience saturation) → tailored brief sent to Generation Sub-Agent after human approval.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Image post-processing</span><span class="ac-row-val">Auto-crops generated or uploaded master images to all placement ratios (1:1, 4:5, 9:16, 1.91:1) via Bannerbear API. Validates Meta text-to-image ratio. Uploads via platform asset APIs.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Tools</span><span><div class="tag-row"><span class="tag tag-co">Pencil AI API</span><span class="tag tag-co">Bannerbear / Cloudinary</span><span class="tag tag-bl">GPT-4o</span><span class="tag tag-gy">Meta Creative Hub API</span><span class="tag tag-gy">Google Asset API</span></div></span></div>
+        <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-guard">Guarded</span> — rotation and post-processing auto-applied; all generation and brief approvals require human sign-off before any asset is dispatched or published</span></div>
+      </div>
+    </div>
+
+    <!-- CREATIVE GENERATION SUB-AGENT -->
+    <div class="agent-card full">
+      <div class="ac-header" onclick="toggleAgent(this)" style="background:var(--coral-l)">
+        <div class="ac-dot" style="background:var(--coral);color:#fff">CG</div>
+        <div class="ac-info">
+          <div class="ac-name">Creative Generation Sub-Agent</div>
+          <div class="ac-role">AI video generation · AI audio &amp; voiceover · image generation · caption production · human approval gate before any asset goes live</div>
+        </div>
+        <div class="ac-chev">▼</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-row"><span class="ac-row-label">Trigger</span><span class="ac-row-val">Dispatched by Creative Intelligence Agent on: (1) human-approved new brief, or (2) fatigue alert brief approved by human. Never self-triggers.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Inputs</span><span class="ac-row-val">Structured brief from Redis: {offer, hook_angle, audience_segment, visual_direction, format_list, duration_seconds, brand_guidelines_url, prohibited_content, channel_targets, winning_element_history}. Brand guidelines and asset library fetched from DataBricks gold.brand_assets.</span></div>
+
+        <div class="ac-row"><span class="ac-row-label">Video generation</span><span class="ac-row-val">
+          <strong>Step 1 — Script:</strong> GPT-4o writes hook script (0–3s), narrative (3–25s), and CTA (final 3s) based on brief. Hook variants: 3 options generated for human selection.<br>
+          <strong>Step 2 — Voiceover:</strong> ElevenLabs API generates voiceover from approved script. Voice clone matched to brand voice profile stored in ElevenLabs project. Emotion and pacing configured per audience segment (urgency for retargeting, informational for prospecting).<br>
+          <strong>Step 3 — Visual generation:</strong> Runway ML Gen-4 generates video from text prompt + reference image (brand product shot). Kling AI used for image-to-video animation of static product images. HeyGen generates AI spokesperson variant if brief calls for UGC-style.<br>
+          <strong>Step 4 — Music / SFX:</strong> Suno AI generates background music matched to ad mood (energetic / calm / urgent). ElevenLabs SFX for any sound effects. Mixed at -14 LUFS for platform compliance.<br>
+          <strong>Step 5 — Assembly:</strong> FFmpeg combines voiceover + video + music. AssemblyAI generates SRT captions from final audio. Validates sync. Exports: 9:16 (Reels/TikTok), 4:5 (Feed), 1:1 (Square), 16:9 (YouTube).
+        </span></div>
+
+        <div class="ac-row"><span class="ac-row-label">Audio ad generation</span><span class="ac-row-val">
+          For audio-first channels (Spotify, YouTube audio, podcast pre-roll):<br>
+          <strong>Script:</strong> GPT-4o writes 15s / 30s audio ad script with clear sonic branding hook and verbal CTA.<br>
+          <strong>Voiceover:</strong> ElevenLabs generates primary read + 2 tone variants (enthusiastic / conversational / authoritative).<br>
+          <strong>Music bed:</strong> Suno AI generates branded background track matching brand guidelines tempo. Ducked under voiceover at -18 dB.<br>
+          <strong>Final mix:</strong> Exported as MP3 (128kbps) and WAV (48kHz/16-bit) for platform compatibility.
+        </span></div>
+
+        <div class="ac-row"><span class="ac-row-label">Image generation</span><span class="ac-row-val">GPT-4o generates detailed image prompt from brief. Midjourney API (or DALL-E 3 as fallback) generates 4 variants. Branded elements (logo, product) composited via Cloudinary API using template overlays. Text overlays applied via Bannerbear. All variants auto-cropped to required placement ratios.</span></div>
+
+        <div class="ac-row"><span class="ac-row-label">Brand guardrails</span><span class="ac-row-val">Before generation: brief validated against prohibited content list from Redis config. After generation: GPT-4o Vision reviews each asset for brand compliance (logo placement, color palette adherence, prohibited imagery). Non-compliant assets flagged and regenerated — never surfaced to human approval queue in non-compliant state.</span></div>
+
+        <div class="ac-row"><span class="ac-row-label">Human approval gate</span><span class="ac-row-val">All generated assets (video, audio, image) delivered to Slack approval channel as: preview link + generation parameters + Pencil AI predicted score + brand compliance status. Human actions: APPROVE (→ Creative Intel. Agent handles upload and rotation) / REJECT (→ brief returned with rejection reason for regeneration) / REVISE (→ human edits brief fields, sub-agent regenerates specific elements only). Nothing reaches platform without explicit APPROVE.</span></div>
+
+        <div class="ac-row"><span class="ac-row-label">Storage</span><span class="ac-row-val">All generated assets stored in S3 (or GCS) with metadata: brief_id, generation_model, generation_params, approval_status, platform_upload_ids, performance_outcome (updated post-launch). Enables model selection optimization over time based on which generation tool produces highest-performing assets.</span></div>
+
+        <div class="ac-row"><span class="ac-row-label">Generation tools</span><span><div class="tag-row">
+          <span class="tag tag-co">Runway ML Gen-4</span>
+          <span class="tag tag-co">Kling AI</span>
+          <span class="tag tag-co">HeyGen</span>
+          <span class="tag tag-co">ElevenLabs</span>
+          <span class="tag tag-co">Suno AI</span>
+          <span class="tag tag-co">Midjourney API</span>
+          <span class="tag tag-co">DALL-E 3 (fallback)</span>
+          <span class="tag tag-co">AssemblyAI</span>
+          <span class="tag tag-bl">GPT-4o (script + vision)</span>
+          <span class="tag tag-gy">FFmpeg</span>
+          <span class="tag tag-co">Bannerbear</span>
+          <span class="tag tag-co">Cloudinary</span>
+        </div></span></div>
+
+        <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-human">Human approval required</span> — generates autonomously but zero assets reach any platform without explicit human APPROVE in Slack. All generation parameters logged for auditability.</span></div>
+      </div>
+    </div>
+
+    <!-- AUDIENCE INTELLIGENCE AGENT -->
+    <div class="agent-card">
+      <div class="ac-header" onclick="toggleAgent(this)" style="background:var(--blue-l)">
+        <div class="ac-dot" style="background:var(--blue);color:#fff">AI</div>
+        <div class="ac-info">
+          <div class="ac-name">Audience Intelligence Agent</div>
+          <div class="ac-role">Segment monitoring · CRM sync · exclusion management</div>
+        </div>
+        <div class="ac-chev">▼</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-row"><span class="ac-row-label">Trigger</span><span class="ac-row-val">Daily (audience syncs) · Every 2 hrs (saturation monitoring) · Weekly (bid modifier recalculation)</span></div>
+        <div class="ac-row"><span class="ac-row-label">CRM sync</span><span class="ac-row-val">Reads DataBricks gold.crm_customers → generates Customer Match CSV → uploads to Google Ads and Meta Custom Audiences APIs. Schedules: daily refresh for suppressions, weekly for lookalike seeds.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Exclusion mgmt</span><span class="ac-row-val">Auto-adds converted customers (last 30 days) to suppression lists. Monitors match rate — alerts if below 60%. Validates list sizes meet minimum thresholds for lookalike generation.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Saturation detection</span><span class="ac-row-val">Tracks reach % and frequency per audience segment from Meta Audience Insights API and Google Audience Manager. Flags segments &gt;70% reached — recommends expansion or new seed to human.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Bid modifier update</span><span class="ac-row-val">Weekly: reads ROAS differential between HVC retargeting vs. cold audience from Gold layer → recalculates optimal upweight → applies via platform APIs within approved ceiling.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Tools</span><span><div class="tag-row"><span class="tag tag-bl">Google Ads Customer Match API</span><span class="tag tag-bl">Meta Custom Audiences API</span><span class="tag tag-bl">DataBricks</span><span class="tag tag-gy">Appsflyer Audience API</span></div></span></div>
+        <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-full">Fully automated</span> for syncs and suppressions · <span class="auto-guard">Guarded</span> for audience expansion recommendations</span></div>
+      </div>
+    </div>
+
+    <!-- REPORTING AGENT -->
+    <div class="agent-card full">
+      <div class="ac-header" onclick="toggleAgent(this)" style="background:var(--green-l)">
+        <div class="ac-dot" style="background:var(--green);color:#fff">R</div>
+        <div class="ac-info">
+          <div class="ac-name">Reporting &amp; Delivery Agent</div>
+          <div class="ac-role">Bi-hourly assembly · GPT-4o summarization · multi-channel delivery · Looker Studio refresh</div>
+        </div>
+        <div class="ac-chev">▼</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-row"><span class="ac-row-label">Cadence</span><span class="ac-row-val">Bi-hourly flash (WA + email) · Daily briefing 8 AM (email) · Daily digest 6 PM (email + Slack) · Weekly review Monday (email PDF) · Real-time CRITICAL alert (WA immediate, bypass cycle)</span></div>
+        <div class="ac-row"><span class="ac-row-label">Data assembly</span><span class="ac-row-val">Reads gold.campaign_performance + gold.creative_performance + gold.attribution_view → computes period-over-period deltas → identifies top 3 anomalies from KPI Monitor output → pulls AI action log summary</span></div>
+        <div class="ac-row"><span class="ac-row-label">AI summarization</span><span class="ac-row-val">GPT-4o prompt: "Given this performance data [JSON], identify the 3 most important developments, explain root cause in plain English, and list recommended human actions in priority order." Output: 150-word WhatsApp summary + full email report.</span></div>
+        <div class="ac-row"><span class="ac-row-label">WA delivery</span><span class="ac-row-val">WhatsApp Business API (via 360dialog or Twilio). Structured template message with: KPI snapshot, delta vs. target, top alert, top 3 AI actions, confirmation button for pending approvals. Two-way: human replies "APPROVE 1 2" → Orchestrator executes.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Email delivery</span><span class="ac-row-val">Gmail API sends HTML report with: performance scorecard table, channel breakdown, creative performance top/bottom, AI action log from last period, pending approvals. PDF attachment for weekly report.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Dashboard</span><span class="ac-row-val">Looker Studio connected directly to DataBricks Gold layer via BigQuery export or Looker Studio connector. Refreshes on data sync completion. Always-on view — no agent action required.</span></div>
+        <div class="ac-row"><span class="ac-row-label">Tools</span><span><div class="tag-row"><span class="tag tag-gr">GPT-4o</span><span class="tag tag-gr">WhatsApp Business API</span><span class="tag tag-gr">Gmail API</span><span class="tag tag-gr">Looker Studio</span><span class="tag tag-am">360dialog / Twilio</span><span class="tag tag-bl">n8n (workflow orchestration)</span></div></span></div>
+        <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-full">Fully automated</span></span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 4: DATA FLOW -->
+<div class="section" id="dataflow">
+  <div class="section-title">Data Flow — Platform by Platform</div>
+  <div class="section-sub">Inbound ingestion schedule, what data is pulled, which agent consumes it, and what action it enables</div>
+  <div style="overflow-x:auto">
+  <table class="df-table">
+    <thead><tr>
+      <th class="w16">Platform</th>
+      <th class="w14">Connector</th>
+      <th class="w14">Cadence</th>
+      <th class="w20">Key data pulled</th>
+      <th class="w16">Consuming agent</th>
+      <th class="w20">Action enabled</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td><span class="plat-badge">Google Ads API v17</span></td>
+      <td>Airbyte + Google Ads Client Library</td>
+      <td>Every 2 hrs (perf) · Daily (search terms, audiences)</td>
+      <td>Campaign / ad group / keyword metrics: impressions, clicks, cost, conversions, ROAS, CPA, auction insights, search term report</td>
+      <td>KPI Monitor · Campaign Opt. · Audience Intel.</td>
+      <td>Bid adjustments · budget reallocation · negative keyword additions · audience modifier updates · alert generation</td>
+    </tr>
+    <tr>
+      <td><span class="plat-badge">Meta Marketing API v20</span></td>
+      <td>Airbyte + Meta Business SDK</td>
+      <td>Every 2 hrs (perf) · Daily (creative insights, audience reach)</td>
+      <td>Ad set / ad metrics: reach, frequency, CPM, CTR, CVR, ROAS, creative-level breakdown, Audience Insights reach %</td>
+      <td>KPI Monitor · Campaign Opt. · Creative Intel. · Audience Intel.</td>
+      <td>Creative rotation · fatigue detection · audience saturation alerts · bid modifier updates · Advantage+ expansion monitoring</td>
+    </tr>
+    <tr>
+      <td><span class="plat-badge">Appsflyer (MMP)</span></td>
+      <td>Appsflyer Pull API + S3 export (real-time postbacks via webhook)</td>
+      <td>Real-time postbacks · Pull API every 2 hrs for aggregates</td>
+      <td>In-app events (install, purchase, LTV, retention), attribution by channel/campaign/ad, fraud signals, cohort data, re-engagement data</td>
+      <td>KPI Monitor · Campaign Opt. · Reporting Agent</td>
+      <td>True mobile attribution ROAS calculation · LTV-based bid modifier signals · fraud detection for affiliate publishers · cross-channel deduplication</td>
+    </tr>
+    <tr>
+      <td><span class="plat-badge">Google Analytics 4</span></td>
+      <td>Airbyte GA4 connector + GA4 Data API</td>
+      <td>Every 2 hrs</td>
+      <td>Session behavior, page CVR, funnel step completion, landing page performance, bounce rate, Core Web Vitals (via Search Console integration)</td>
+      <td>KPI Monitor · Reporting Agent</td>
+      <td>Landing page CVR monitoring · funnel drop-off detection · page speed alerting · message match validation (NLP on page title vs. ad headline)</td>
+    </tr>
+    <tr>
+      <td><span class="plat-badge">DataBricks (internal)</span></td>
+      <td>Direct DataBricks API (internal cluster read)</td>
+      <td>Daily (CRM refresh) · Real-time for revenue events via Kafka</td>
+      <td>CRM customer records (LTV, segment, purchase history) · revenue data (actual vs. attributed) · product catalog · first-party cohort data</td>
+      <td>Audience Intel. · Campaign Opt. · Reporting Agent</td>
+      <td>Lookalike seed generation · HVC audience upload · actual vs. attributed ROAS reconciliation · dynamic conversion value pass-through · MMM data prep</td>
+    </tr>
+    <tr>
+      <td><span class="plat-badge">Impact.com / PartnerStack</span></td>
+      <td>Impact.com REST API</td>
+      <td>Daily (publisher data) · Real-time (conversion postbacks)</td>
+      <td>Publisher performance metrics, click quality scores, conversion rates, commission payouts, fraud signals, traffic source breakdown</td>
+      <td>Campaign Opt. · Reporting Agent</td>
+      <td>Publisher quality scoring · fraud flagging · commission efficiency monitoring · affiliate CPA vs. target comparison</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- SECTION 5: TOOLS & CONNECTORS -->
+<div class="section" id="tools">
+  <div class="section-title">Tools, Connectors &amp; Protocols</div>
+  <div class="section-sub">Recommended stack for each architectural component — with rationale</div>
+  <div style="overflow-x:auto">
+  <table class="tl-table">
+    <thead><tr>
+      <th style="width:18%">Component</th>
+      <th style="width:20%">Recommended tool</th>
+      <th style="width:18%">Category</th>
+      <th style="width:44%">Role &amp; rationale</th>
+    </tr></thead>
+    <tbody>
+    <tr><td><span class="tool-name">Agent framework</span></td><td>LangGraph + LangChain</td><td><span class="tag tag-pu">Orchestration</span></td><td>Stateful multi-agent graphs with built-in tool use, memory, and human-in-the-loop checkpoints. Production-grade; supports complex conditional routing between subagents.</td></tr>
+    <tr><td><span class="tool-name">LLM reasoning</span></td><td>GPT-4o (OpenAI API)</td><td><span class="tag tag-pu">AI reasoning</span></td><td>Used by all agents for classification, summarization, brief generation, and anomaly root-cause analysis. Function calling enables structured JSON outputs for platform API calls.</td></tr>
+    <tr><td><span class="tool-name">Inter-agent protocol</span></td><td>A2A (Agent-to-Agent) over Redis Pub/Sub</td><td><span class="tag tag-pu">Protocol</span></td><td>Google's A2A spec defines a standard message envelope for agent communication. Redis provides low-latency pub/sub. All agent messages follow: {agent_id, task_type, payload, confidence, rollback_fn}.</td></tr>
+    <tr><td><span class="tool-name">Tool protocol</span></td><td>MCP (Model Context Protocol)</td><td><span class="tag tag-pu">Protocol</span></td><td>Anthropic's MCP standardizes how agents call external tools (APIs, databases). Used for all platform API calls — agents expose tools as MCP servers that Orchestrator can invoke.</td></tr>
+    <tr><td><span class="tool-name">Data ingestion</span></td><td>Airbyte (self-hosted or Cloud)</td><td><span class="tag tag-bl">Data</span></td><td>Pre-built connectors for Google Ads, Meta, GA4, and 300+ other sources. Incremental syncs reduce API quota usage. Outputs to DataBricks Bronze layer via Delta format.</td></tr>
+    <tr><td><span class="tool-name">Data transformation</span></td><td>dbt Core on DataBricks</td><td><span class="tag tag-bl">Data</span></td><td>SQL-based transforms: Bronze → Silver (normalization) → Gold (KPI aggregates, agent-ready views). Version-controlled, testable, documented — critical for data trust at agent layer.</td></tr>
+    <tr><td><span class="tool-name">Data warehouse</span></td><td>DataBricks (Delta Lake)</td><td><span class="tag tag-bl">Data</span></td><td>Single source of truth. Handles streaming (Kafka for real-time events) and batch (Airbyte for scheduled pulls). Audit log table stores all agent actions as immutable Delta records.</td></tr>
+    <tr><td><span class="tool-name">Agent state / memory</span></td><td>Redis (Redis Cloud or self-hosted)</td><td><span class="tag tag-bl">Data</span></td><td>Sub-millisecond read/write for agent state. Stores: active task queue, pending approvals, current guardrail config, rolling KPI windows for anomaly detection, agent conversation memory.</td></tr>
+    <tr><td><span class="tool-name">Workflow automation</span></td><td>n8n (self-hosted)</td><td><span class="tag tag-pu">Orchestration</span></td><td>Low-code automation for scheduled triggers, webhook handling, and report delivery workflows. Connects LangGraph agents to Gmail, WhatsApp, and Slack without custom glue code.</td></tr>
+    <tr><td><span class="tool-name">Creative pre-scoring</span></td><td>Pencil AI</td><td><span class="tag tag-co">Creative</span></td><td>Predicts CTR, CVR, and creative fatigue timeline before production or generation spend is committed. API-callable. Trained on $1B+ in ad spend. Gates both human-produced and AI-generated assets.</td></tr>
+    <tr><td><span class="tool-name">Video generation</span></td><td>Runway ML Gen-4</td><td><span class="tag tag-co">AI Generation</span></td><td>Best-in-class text-to-video and image-to-video for brand-consistent ad content. Generates raw video footage from prompt + reference image. Used for product-led and lifestyle video variants. API access available.</td></tr>
+    <tr><td><span class="tool-name">Image-to-video animation</span></td><td>Kling AI</td><td><span class="tag tag-co">AI Generation</span></td><td>Animates static product images into short video clips (3–8s). Ideal for e-commerce ad hooks where a product needs motion without full video production. High motion consistency.</td></tr>
+    <tr><td><span class="tool-name">AI spokesperson video</span></td><td>HeyGen</td><td><span class="tag tag-co">AI Generation</span></td><td>Generates UGC-style and spokesperson video ads using AI avatars. Supports voice cloning and multilingual output — one brief generates localized variants across markets. Critical for scaling video without on-camera talent cost.</td></tr>
+    <tr><td><span class="tool-name">Voiceover generation</span></td><td>ElevenLabs</td><td><span class="tag tag-co">AI Generation</span></td><td>Best-in-class AI voice synthesis with emotion and pacing control. Supports brand voice cloning (train on existing voiceover recordings). Generates audio ad scripts in multiple tones and languages from the same ElevenLabs project. Also produces SFX.</td></tr>
+    <tr><td><span class="tool-name">Music generation</span></td><td>Suno AI</td><td><span class="tag tag-co">AI Generation</span></td><td>Generates royalty-free background music matched to ad mood brief (energetic, calm, urgent). Exports at -14 LUFS platform-compliant mix. Alternative: Udio for more granular style control.</td></tr>
+    <tr><td><span class="tool-name">Image generation</span></td><td>Midjourney API / DALL-E 3</td><td><span class="tag tag-co">AI Generation</span></td><td>Generates base creative imagery from GPT-4o-written prompt. Midjourney preferred for photorealistic ad imagery. DALL-E 3 as fallback for faster API response. Cloudinary composites brand elements (logo, product) post-generation.</td></tr>
+    <tr><td><span class="tool-name">Video assembly</span></td><td>FFmpeg (server-side)</td><td><span class="tag tag-co">AI Generation</span></td><td>Server-side assembly of AI-generated video + voiceover + music into final ad. Handles audio mixing, format export (MP4 H.264), and multi-ratio rendering. No creative tool dependency — pure compute.</td></tr>
+    <tr><td><span class="tool-name">Caption generation</span></td><td>AssemblyAI (Whisper-based)</td><td><span class="tag tag-co">Creative</span></td><td>Auto-generates SRT captions for all video assets (AI-generated and human-produced). Higher accuracy than base Whisper for ad audio with music beds. Validates sync accuracy before upload.</td></tr>
+    <tr><td><span class="tool-name">Image processing</span></td><td>Bannerbear + Cloudinary</td><td><span class="tag tag-co">Creative</span></td><td>Bannerbear: API-driven text overlay, logo placement, and template-based ad generation. Cloudinary: CDN-hosted dynamic image transforms (crop, resize, format). Together handle all placement-ratio variants from a single master asset.</td></tr>
+    <tr><td><span class="tool-name">Mobile attribution</span></td><td>Appsflyer</td><td><span class="tag tag-gy">Measurement</span></td><td>Industry-standard MMP. Provides cross-channel mobile attribution, fraud protection (Protect360), LTV cohorts, and audience segments. Real-time postbacks to platform and DataBricks.</td></tr>
+    <tr><td><span class="tool-name">Reporting dashboard</span></td><td>Looker Studio</td><td><span class="tag tag-gr">Reporting</span></td><td>Free, connects directly to DataBricks Gold via BigQuery export connector. Always-on live dashboard. Configures once by human; refreshes automatically on data sync.</td></tr>
+    <tr><td><span class="tool-name">WA delivery</span></td><td>360dialog (WhatsApp Business API)</td><td><span class="tag tag-gr">Delivery</span></td><td>Official Meta BSP. Enables two-way messaging — human can reply to approve/reject agent actions directly in WhatsApp. Template management and delivery receipts via webhook.</td></tr>
+    <tr><td><span class="tool-name">Email delivery</span></td><td>Gmail API (service account)</td><td><span class="tag tag-gr">Delivery</span></td><td>Sends HTML reports and PDF attachments from a shared team address. Triggered by n8n workflow post-report assembly. Handles distribution list management.</td></tr>
+    <tr><td><span class="tool-name">Human approval UI</span></td><td>Slack (Bolt framework)</td><td><span class="tag tag-am">Human layer</span></td><td>Slack app posts pending actions as interactive blocks with Approve / Reject / Modify buttons. Responses webhook back to Orchestrator. Provides audit trail in Slack channel.</td></tr>
+    <tr><td><span class="tool-name">Affiliate fraud</span></td><td>TrafficGuard</td><td><span class="tag tag-gy">Measurement</span></td><td>Real-time invalid traffic detection at the click and postback level. Integrates with Impact.com and Appsflyer. Auto-blocks fraudulent publisher IDs; writes fraud events to DataBricks.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- SECTION 6: WORKFLOWS -->
+<div class="section" id="workflows">
+<div class="section-title">End-to-End Workflows</div>
+  <div class="section-sub">The 4 core automation workflows — click any to expand step-by-step</div>
+  <div class="wf-grid">
+
+    <!-- WF1: Campaign management -->
+    <div class="wf-card">
+      <div class="wf-header" onclick="toggleWF(this)" style="background:var(--teal-l)">
+        <div class="wf-num" style="background:var(--teal);color:#fff">1</div>
+        <span class="wf-title" style="color:var(--teal-t)">Campaign management &amp; optimization</span>
+        <a href="file:///C:/Users/avina/Downloads/wf1_campaign_optimization.html" target="_blank" onclick="event.stopPropagation()" style="font-size:11px;font-weight:500;color:var(--teal-t);background:rgba(0,0,0,0.06);border-radius:4px;padding:3px 8px;text-decoration:none;white-space:nowrap;flex-shrink:0">Open full diagram ↗</a>
+        <span style="font-size:10px;color:var(--teal-t)">▼</span>
+      </div>
+      <div class="wf-body">
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--amber-l);color:var(--amber-t)">H</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--amber-t)">Human — one-time setup</div>
+            <div class="wf-step-desc">Inputs campaign objective, budget, tCPA/tROAS target, audience seeds, and landing page URL into config store (Redis). Sets guardrail thresholds.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--blue-l);color:var(--blue-t)">1</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--blue-t)">Data Sync Agent</div>
+            <div class="wf-step-desc">Every 2 hrs: pulls Google Ads + Meta performance data via Airbyte → dbt transforms → Gold layer KPIs ready.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--blue-l);color:var(--blue-t)">2</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--blue-t)">KPI Monitor Agent</div>
+            <div class="wf-step-desc">Compares actuals vs. 7-day baseline and human-set targets. Classifies anomalies. Dispatches alert events to Orchestrator.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--purple-l);color:var(--purple-t)">3</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--purple-t)">Orchestrator</div>
+            <div class="wf-step-desc">Receives alert. Routes to Campaign Opt. Agent. Checks guardrail eligibility. If within bounds → auto-execute. If above bounds → add to human queue.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--teal-l);color:var(--teal-t)">4</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--teal-t)">Campaign Optimization Agent</div>
+            <div class="wf-step-desc">Calculates optimal bid modifiers and budget reallocation. Writes changes to Google Ads API and Meta API. Logs action with rollback instructions to DataBricks.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--blue-l);color:var(--blue-t)">5</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--blue-t)">KPI Monitor Agent (next cycle)</div>
+            <div class="wf-step-desc">Validates outcome of change 2 hrs later. If CPA improved → confirms action. If CPA worsened &gt;20% → triggers automatic rollback via Orchestrator.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--amber-l);color:var(--amber-t)">H</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--amber-t)">Human — daily 10-min review</div>
+            <div class="wf-step-desc">Reviews Slack action queue: approves/rejects actions above guardrail. Reviews bi-hourly WA report. Strategic changes (bid strategy type, new campaign) actioned here.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WF2: Creative -->
+
+    <!-- WF2: Creative -->
+    <div class="wf-card">
+      <div class="wf-header" onclick="toggleWF(this)" style="background:var(--coral-l)">
+        <div class="wf-num" style="background:var(--coral);color:#fff">2</div>
+        <span class="wf-title" style="color:var(--coral-t)">AI creative generation &amp; testing (video + audio + image)</span>
+        <a href="file:///C:/Users/avina/Downloads/wf2_creative_generation.html" target="_blank" onclick="event.stopPropagation()" style="font-size:11px;font-weight:500;color:var(--coral-t);background:rgba(0,0,0,0.06);border-radius:4px;padding:3px 8px;text-decoration:none;white-space:nowrap;flex-shrink:0">Open full diagram ↗</a>
+        <span style="font-size:10px;color:var(--coral-t)">▼</span>
+      </div>
+      <div class="wf-body">
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--amber-l);color:var(--amber-t)">H</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--amber-t)">Human — brief submission</div>
+            <div class="wf-step-desc">Submits creative brief via Slack form or config UI: offer, audience pain point, visual direction, format types needed (video / audio / image), channel targets, duration, and any reference assets. No raw media required — brief is the only input.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--coral-l);color:var(--coral-t)">1</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--coral-t)">Creative Intelligence Agent — pre-scoring</div>
+            <div class="wf-step-desc">Pencil AI scores brief concept against account historical win/loss data → returns predicted CTR, CVR, and fatigue timeline. Brief enriched with winning element history from DataBricks (top hook angles, best CTA verbs, highest-CVR offer framing). Score + enriched brief surfaced in Slack for human review.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--amber-l);color:var(--amber-t)">H</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--amber-t)">Human — brief approval (gate 1)</div>
+            <div class="wf-step-desc">Reviews Pencil AI score and enriched brief. Actions: APPROVE (proceed to generation) / REVISE (edits brief fields inline in Slack) / REJECT (brief closed). If score is below threshold, agent flags this prominently — human must explicitly override to proceed.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--coral-l);color:var(--coral-t)">2</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--coral-t)">Creative Generation Sub-Agent — script &amp; prompt writing</div>
+            <div class="wf-step-desc">GPT-4o writes: (a) Video script — 3 hook variants (0–3s each), narrative (3–25s), CTA (final 3s). (b) Audio ad script — 15s and 30s versions with verbal hook and CTA. (c) Image generation prompt — detailed visual description for each format variant. All checked against prohibited content list before proceeding.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--coral-l);color:var(--coral-t)">3</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--coral-t)">Creative Generation Sub-Agent — parallel generation</div>
+            <div class="wf-step-desc">
+              Runs in parallel across asset types:<br>
+              <strong>Video:</strong> ElevenLabs generates voiceover from approved script → Runway ML Gen-4 generates video footage → Kling AI animates product image for hook → HeyGen generates spokesperson variant if brief calls for UGC style → FFmpeg assembles all layers (video + VO + music) → exported in all required ratios (9:16 / 4:5 / 1:1 / 16:9).<br>
+              <strong>Audio:</strong> ElevenLabs generates 2–3 voice tone variants → Suno AI generates brand-matched music bed → FFmpeg mixes at -14 LUFS → exported as MP3 + WAV.<br>
+              <strong>Image:</strong> Midjourney API generates 4 variants → Cloudinary composites brand elements → Bannerbear applies text overlays and crops to all placement ratios.<br>
+              AssemblyAI auto-generates SRT captions for all video and audio assets.
+            </div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--coral-l);color:var(--coral-t)">4</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--coral-t)">Creative Generation Sub-Agent — brand compliance check</div>
+            <div class="wf-step-desc">GPT-4o Vision reviews each generated asset: logo placement, color palette adherence, prohibited imagery, Meta text density, platform spec compliance (aspect ratio, file size, duration limits). Non-compliant assets auto-regenerated with corrected parameters. Only compliant assets advance to approval queue.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--amber-l);color:var(--amber-t)">H</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--amber-t)">Human — asset approval (gate 2)</div>
+            <div class="wf-step-desc">Slack approval message contains: preview link for each asset, generation model used, Pencil AI predicted score, brand compliance status, and suggested channel targets. Human actions: APPROVE ALL / APPROVE SELECTED (numbered) / REJECT (with reason) / REVISE (specifies which element to regenerate — e.g. "regenerate hook only" or "change VO tone to calmer"). Rejected assets loop back to step 3 with revision notes.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--coral-l);color:var(--coral-t)">5</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--coral-t)">Creative Intelligence Agent — launch prep &amp; upload</div>
+            <div class="wf-step-desc">Uploads approved assets to platform asset libraries via Google Asset API and Meta Creative Hub API. Assigns to active ad sets. Adds assets to rotation pool. Logs asset metadata (brief_id, generation_model, generation_params, approval_timestamp) to DataBricks gold.creative_assets.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--coral-l);color:var(--coral-t)">6</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--coral-t)">Creative Intelligence Agent — rotation &amp; optimization</div>
+            <div class="wf-step-desc">Every 2 hrs: Thompson Sampling distributes impressions across all variants (AI-generated and human-produced equally — no bias). At 95% statistical confidence → winner promoted, others deprioritised. Performance outcomes written back to DataBricks to train future brief generation and Pencil AI scoring.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--coral-l);color:var(--coral-t)">7</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--coral-t)">Creative Intelligence Agent — fatigue detection &amp; auto-brief</div>
+            <div class="wf-step-desc">7-day CTR/CVR trend monitored continuously. On fatigue trigger: GPT-4o classifies root cause (hook failure / offer fatigue / audience saturation) → generates targeted brief incorporating winning element history → dispatches to Slack with recommended generation parameters pre-filled. Human approves brief → loop restarts at step 1.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WF3: Reporting -->
+
+    <!-- WF3: Reporting -->
+    <div class="wf-card">
+      <div class="wf-header" onclick="toggleWF(this)" style="background:var(--green-l)">
+        <div class="wf-num" style="background:var(--green);color:#fff">3</div>
+        <span class="wf-title" style="color:var(--green-t)">Reporting automation</span>
+        <a href="file:///C:/Users/avina/Downloads/wf3_reporting_automation.html" target="_blank" onclick="event.stopPropagation()" style="font-size:11px;font-weight:500;color:var(--green-t);background:rgba(0,0,0,0.06);border-radius:4px;padding:3px 8px;text-decoration:none;white-space:nowrap;flex-shrink:0">Open full diagram ↗</a>
+        <span style="font-size:10px;color:var(--green-t)">▼</span>
+      </div>
+      <div class="wf-body">
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--blue-l);color:var(--blue-t)">1</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--blue-t)">Data Sync Agent</div>
+            <div class="wf-step-desc">Every 2 hrs: Gold layer tables refreshed with latest performance data from all platforms. Publishes "data_ready" event to Redis.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--blue-l);color:var(--blue-t)">2</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--blue-t)">KPI Monitor Agent</div>
+            <div class="wf-step-desc">Runs anomaly detection. Classifies all alerts by severity. Publishes structured alert list with root cause tags to Redis for Reporting Agent to include.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--green-l);color:var(--green-t)">3</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--green-t)">Reporting Agent — data assembly</div>
+            <div class="wf-step-desc">Reads Gold KPIs + anomaly list + agent action log from last period. Computes deltas vs. targets and vs. last period. Builds structured JSON data payload for LLM.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--green-l);color:var(--green-t)">4</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--green-t)">Reporting Agent — GPT-4o summarization</div>
+            <div class="wf-step-desc">GPT-4o called with structured prompt: performance data + anomalies + action log → outputs 150-word WA message + full HTML email body. Top 3 recommended human actions generated.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--green-l);color:var(--green-t)">5</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--green-t)">Reporting Agent — delivery</div>
+            <div class="wf-step-desc">n8n workflow: WhatsApp Business API sends flash report. Gmail API sends HTML email. Looker Studio auto-refreshes via DataBricks connector. Slack posts pending approval queue.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--amber-l);color:var(--amber-t)">H</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--amber-t)">Human — review &amp; action</div>
+            <div class="wf-step-desc">Reviews WA flash report. Approves pending actions via WhatsApp reply ("APPROVE 1 2") or Slack button. Critical alerts require immediate human response; rest reviewed in morning queue.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WF4: Feedback loop -->
+
+    <!-- WF4: Feedback loop -->
+    <div class="wf-card">
+      <div class="wf-header" onclick="toggleWF(this)" style="background:var(--purple-l)">
+        <div class="wf-num" style="background:var(--purple);color:#fff">4</div>
+        <span class="wf-title" style="color:var(--purple-t)">Closed-loop performance optimization</span>
+        <a href="file:///C:/Users/avina/Downloads/wf4_closed_feedback_loop.html" target="_blank" onclick="event.stopPropagation()" style="font-size:11px;font-weight:500;color:var(--purple-t);background:rgba(0,0,0,0.06);border-radius:4px;padding:3px 8px;text-decoration:none;white-space:nowrap;flex-shrink:0">Open full diagram ↗</a>
+        <span style="font-size:10px;color:var(--purple-t)">▼</span>
+      </div>
+      <div class="wf-body open">
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--teal-l);color:var(--teal-t)">1</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--teal-t)">Campaign Opt. Agent → action</div>
+            <div class="wf-step-desc">Applies bid adjustment or budget reallocation. Writes action to DataBricks audit table: {campaign_id, change_type, before_value, after_value, confidence, expected_cpa_delta, rollback_fn}.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--blue-l);color:var(--blue-t)">2</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--blue-t)">Data Sync Agent (next cycle, +2 hrs)</div>
+            <div class="wf-step-desc">Ingests updated platform performance data. dbt incremental model appends new rows to Gold layer with action timestamp as a dimension for attribution.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--blue-l);color:var(--blue-t)">3</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--blue-t)">KPI Monitor Agent — outcome validation</div>
+            <div class="wf-step-desc">Compares post-action CPA/ROAS vs. pre-action baseline for affected campaigns. Tags action as: IMPROVED / NEUTRAL / DEGRADED. Stores outcome in audit table.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--purple-l);color:var(--purple-t)">4</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--purple-t)">Orchestrator — auto-rollback or confirm</div>
+            <div class="wf-step-desc">If DEGRADED &gt;20%: auto-rollback via platform API within same cycle. If IMPROVED or NEUTRAL: confirms action. Updates agent confidence model for that action type.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--purple-l);color:var(--purple-t)">5</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--purple-t)">Orchestrator — pattern learning</div>
+            <div class="wf-step-desc">Aggregates action outcomes weekly. GPT-4o identifies systematic patterns: "Bid +15% on mobile between 6–9 PM consistently improves ROAS by 12%." Stores as a learned rule in Redis config.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--amber-l);color:var(--amber-t)">H</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--amber-t)">Human — monthly guardrail review</div>
+            <div class="wf-step-desc">Reviews agent action success rate from audit log. Expands guardrail thresholds where agent has proven reliable. Tightens thresholds for volatile campaign types. Updates config in Redis.</div>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-step-num" style="background:var(--coral-l);color:var(--coral-t)">6</div>
+          <div class="wf-step-content">
+            <div class="wf-step-actor" style="color:var(--coral-t)">Creative Intel. Agent — creative feedback loop</div>
+            <div class="wf-step-desc">Winner creative attributes (hook type, visual style, CTA verb, offer depth) stored in DataBricks. Pencil AI scoring model fine-tuned monthly with account-specific win/lose data. Next brief generation uses these patterns.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- SECTION 7: PROTOCOLS & GUARDRAILS -->
+<div class="section" id="protocols">
+  <div class="section-title">Protocols, Guardrails &amp; Safety Rules</div>
+  <div class="section-sub">Standards governing agent communication, autonomy limits, and data safety</div>
+
+  <div class="proto-grid" style="margin-bottom:14px">
+    <div class="proto-card">
+      <h4>A2A — Agent-to-Agent Protocol</h4>
+      <ul>
+        <li>All inter-agent messages use Google A2A JSON envelope</li>
+        <li>Fields: agent_id, task_type, payload, confidence_score, rollback_fn, timestamp</li>
+        <li>Transport: Redis Pub/Sub (topic per domain: campaign / creative / audience / report)</li>
+        <li>Orchestrator is the only agent that subscribes to all topics</li>
+        <li>Subagents publish results; Orchestrator decides action or escalation</li>
+      </ul>
+    </div>
+    <div class="proto-card">
+      <h4>MCP — Model Context Protocol</h4>
+      <ul>
+        <li>Each platform integration exposed as an MCP server (Google Ads, Meta, Appsflyer)</li>
+        <li>Agents call tools via MCP — standardized input/output schemas</li>
+        <li>Enables tool discovery, permission scoping, and rate limit management</li>
+        <li>All MCP tool calls logged before execution for audit trail</li>
+        <li>Failed calls → retry with exponential backoff → escalate to human</li>
+      </ul>
+    </div>
+    <div class="proto-card">
+      <h4>Data security &amp; access</h4>
+      <ul>
+        <li>All platform API credentials stored in HashiCorp Vault (or AWS Secrets Manager)</li>
+        <li>Agents access credentials at runtime via secret reference — never hardcoded</li>
+        <li>DataBricks service principal scoped to read-only for most agents; write access only for Data Sync</li>
+        <li>Platform API write access scoped per agent (Campaign Opt. cannot call Creative API)</li>
+        <li>All PII (CRM data) processed within DataBricks — never sent to external LLM APIs</li>
+      </ul>
+    </div>
+    <div class="proto-card">
+      <h4>Human-in-the-loop triggers</h4>
+      <ul>
+        <li>Confidence score &lt;0.75 on any recommended action</li>
+        <li>Budget shift &gt;15% of any single campaign's daily budget</li>
+        <li>Campaign pause or new campaign creation</li>
+        <li>Bid strategy type change (e.g. tCPA → tROAS)</li>
+        <li>Creative concept approval (pre-production)</li>
+        <li>Attribution model or conversion event change</li>
+        <li>Any action during campaign learning period</li>
+        <li>Creative brief approval before AI generation begins (gate 1)</li>
+        <li>Generated asset approval before platform upload (gate 2)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:8px">Autonomy guardrails — hard limits encoded in Orchestrator</div>
+  <div class="guard-grid">
+    <div class="guard-item"><strong>Bid adjustments</strong>Maximum ±20% change per campaign per 2-hr cycle. Cumulative daily cap: ±40% from start-of-day bid.</div>
+    <div class="guard-item"><strong>Budget reallocation</strong>Maximum ±15% shift of any campaign's daily budget per cycle. Minimum floor budget enforced per campaign (set by human).</div>
+    <div class="guard-item"><strong>Auto-rollback trigger</strong>CPA increases &gt;20% vs. pre-action baseline in the following 2-hr cycle → automatic rollback via platform API.</div>
+    <div class="guard-item"><strong>Creative rotation</strong>No single creative variant can receive &gt;70% impression share until 95% statistical confidence reached. Prevents premature concentration.</div>
+    <div class="guard-item"><strong>Negative keywords</strong>Auto-add only when query appears &gt;3 times with 0 conversions and &gt;$X spend (configurable). Brand and competitor terms always queued for human review.</div>
+    <div class="guard-item"><strong>Learning period lock</strong>Zero automated structural changes during platform learning period. Agent monitors status flag; re-queues all pending changes for post-learning execution.</div>
+    <div class="guard-item"><strong>AI generation gate</strong>Zero AI-generated assets (video, audio, or image) reach any platform without explicit human APPROVE in Slack. Generation runs autonomously but publication is always human-gated. Rejected assets cannot be re-submitted without brief revision.</div>
+    <div class="guard-item"><strong>Brand compliance block</strong>Assets failing GPT-4o Vision brand compliance check are auto-regenerated with corrected parameters. Non-compliant assets are never surfaced to the human approval queue — they are silently regenerated first.</div>
+  </div>
+</div>
+
+
+<div style="text-align:center;padding:20px 0;font-size:11px;color:var(--text3);border-top:0.5px solid var(--border);margin-top:20px">
+  Performance Marketing AI Agent Architecture · Based on Variable Control Matrix v4 · For internal use
+
+<div style="text-align:center;padding:20px 0;font-size:11px;color:#888780;border-top:0.5px solid rgba(0,0,0,0.1);margin-top:24px">
+  PM AI Automation Framework · Variable Control Matrix v4 + Agent Architecture v2 · For internal use only
+</div>
+</div>
+
+<script>
+
+function tog(header) {
+  const body = header.nextElementSibling;
+  const ch = header.querySelector('.fn-chevron');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.fn-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.fn-chevron').forEach(c => c.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); ch.classList.add('open'); }
+}
+document.querySelector('.fn-body').classList.add('open');
+document.querySelector('.fn-chevron').classList.add('open');
+
+
+function toggleAgent(header) {
+  const body = header.nextElementSibling;
+  const chev = header.querySelector('.ac-chev');
+  const open = body.classList.toggle('open');
+  chev.classList.toggle('open', open);
+}
+function toggleWF(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+document.querySelector('.ac-body').classList.add('open');
+document.querySelector('.ac-chev').classList.add('open');
+
+
+
+
+
+</script>
+
+</body></html>
