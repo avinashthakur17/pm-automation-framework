@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0061)file:///C:/Users/avina/Downloads/pm_complete_framework_8.html -->
+<!-- saved from url=(0061)file:///C:/Users/avina/Downloads/pm_complete_framework_9.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -302,17 +302,17 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
 
 <nav class="unified-nav">
   <span class="brand">PM AI Automation Framework</span>
-  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_8.html#exec">Executive Summary</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_9.html#exec">Executive Summary</a>
   <span class="nav-sep">|</span>
-  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_8.html#matrix">Variable Matrix</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_9.html#matrix">Variable Matrix</a>
   <span class="nav-sep">|</span>
-  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_8.html#overview">Architecture</a>
-  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_8.html#agents">Agents</a>
-  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_8.html#dataflow">Data Flow</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_9.html#overview">Architecture</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_9.html#agents">Agents</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_9.html#dataflow">Data Flow</a>
   <span class="nav-sep">|</span>
-  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_8.html#workflows">Workflows</a>
-  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_8.html#tools">Tools</a>
-  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_8.html#protocols">Guardrails</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_9.html#workflows">Workflows</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_9.html#tools">Tools</a>
+  <a href="file:///C:/Users/avina/Downloads/pm_complete_framework_9.html#protocols">Guardrails</a>
 </nav>
 
 <div class="main-content">
@@ -369,9 +369,9 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
   <div class="fn-num" style="background:var(--info-bg);color:var(--info-text)">1</div>
   <span class="fn-title">Audience &amp; Targeting</span>
   <span class="fn-sub">Who sees your ads</span>
-  <span class="fn-chevron open">▼</span>
+  <span class="fn-chevron">▼</span>
 </div>
-<div class="fn-body open">
+<div class="fn-body">
 <table class="var-table">
 <thead><tr>
   <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
@@ -797,9 +797,9 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
   <div class="fn-num" style="background:var(--warn-bg);color:var(--warn-text)">8</div>
   <span class="fn-title">Reporting &amp; Optimisation Cadence</span>
   <span class="fn-sub">How fast you learn and act</span>
-  <span class="fn-chevron">▼</span>
+  <span class="fn-chevron open">▼</span>
 </div>
-<div class="fn-body">
+<div class="fn-body open">
 <table class="var-table">
 <thead><tr>
   <th class="col-var">Variable</th><th class="col-ctrl">Controller</th><th class="col-what">What it controls</th>
@@ -904,7 +904,7 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
         <div class="arch-box plat"><h5>Appsflyer (MMP)</h5><p>Mobile attribution, in-app events, LTV</p></div>
         <div class="arch-box plat"><h5>Google Analytics 4</h5><p>Web sessions, funnel behavior, page CVR</p></div>
         <div class="arch-box plat"><h5>DataBricks (internal)</h5><p>CRM, revenue, product catalog, LTV data</p></div>
-        <div class="arch-box plat"><h5>Impact.com / PartnerStack</h5><p>Affiliate publisher data, commissions</p></div>
+        <div class="arch-box plat"><h5>Affiliate platform (optional)</h5><p>Impact.com / PartnerStack — only if managed publisher program is required. Appsflyer covers conversion tracking &amp; fraud.</p></div>
       </div>
     </div>
     <div class="arch-arrow">▼  outputs delivered</div>
@@ -1046,7 +1046,7 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
         <div class="ac-row"><span class="ac-row-label">Sources</span><span class="ac-row-val">Google Ads API · Meta Marketing API · Appsflyer Pull API · GA4 Data API · DataBricks internal tables (CRM, revenue, catalog)</span></div>
         <div class="ac-row"><span class="ac-row-label">Ingestion tool</span><span class="ac-row-val">Airbyte (managed connectors for all sources → DataBricks Bronze layer). Fallback: custom Python scripts via Google Ads Client Library + Meta SDK</span></div>
         <div class="ac-row"><span class="ac-row-label">Transform</span><span class="ac-row-val">dbt models on DataBricks: Bronze (raw) → Silver (normalized, deduped, type-cast) → Gold (KPI aggregates, channel-normalized metrics, agent-ready views)</span></div>
-        <div class="ac-row"><span class="ac-row-label">Key output tables</span><span class="ac-row-val">gold.campaign_performance · gold.creative_performance · gold.audience_performance · gold.funnel_steps · gold.attribution_view · gold.affiliate_publisher_quality</span></div>
+        <div class="ac-row"><span class="ac-row-label">Key output tables</span><span class="ac-row-val">gold.campaign_performance · gold.creative_performance · gold.audience_performance · gold.funnel_steps · gold.attribution_view · gold.affiliate_performance (via Appsflyer)</span></div>
         <div class="ac-row"><span class="ac-row-label">Tools</span><span><div class="tag-row"><span class="tag tag-bl">Airbyte</span><span class="tag tag-bl">dbt Core</span><span class="tag tag-bl">DataBricks</span><span class="tag tag-bl">Delta Lake</span><span class="tag tag-gy">Appsflyer Pull API</span></div></span></div>
         <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-full">Fully automated</span></span></div>
       </div>
@@ -1081,16 +1081,16 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
           <div class="ac-name">Campaign Optimization Agent</div>
           <div class="ac-role">Bids · budgets · keywords · audience modifiers</div>
         </div>
-        <div class="ac-chev">▼</div>
+        <div class="ac-chev open">▼</div>
       </div>
-      <div class="ac-body">
+      <div class="ac-body open">
         <div class="ac-row"><span class="ac-row-label">Trigger</span><span class="ac-row-val">Post-KPI-Monitor on every 2-hr cycle · Immediately on CRITICAL alert from KPI Monitor</span></div>
         <div class="ac-row"><span class="ac-row-label">Variables managed</span><span class="ac-row-val">tCPA/tROAS target · Bid adjustments by segment · Budget reallocation · Audience bid modifiers · Keyword negatives · Learning period protection</span></div>
         <div class="ac-row"><span class="ac-row-label">Bid logic</span><span class="ac-row-val">Reads live CVR by device/geo/hour from Gold layer → calculates optimal bid modifier → applies via Google Ads API / Meta Marketing API. Guardrail: ±20% per cycle. Rolls back automatically if CPA spikes &gt;20% in next cycle.</span></div>
         <div class="ac-row"><span class="ac-row-label">Budget logic</span><span class="ac-row-val">Ranks campaigns by ROAS daily → calculates reallocation within ±15% of each campaign's budget → applies. &gt;15% shift or pause → queued to human. Floor budgets enforced per campaign config.</span></div>
         <div class="ac-row"><span class="ac-row-label">Keyword agent</span><span class="ac-row-val">Pulls Search Term Report daily → NLP classification (relevant / irrelevant / brand) → auto-adds low-risk negatives → queues high-risk for human review (e.g. competitor brand terms)</span></div>
         <div class="ac-row"><span class="ac-row-label">Learning guard</span><span class="ac-row-val">Checks "Limited by learning" status before any change. Blocks non-urgent actions. Alerts human if learning period &gt;14 days.</span></div>
-        <div class="ac-row"><span class="ac-row-label">APIs used</span><span><div class="tag-row"><span class="tag tag-gy">Google Ads API v17</span><span class="tag tag-gy">Meta Marketing API v20</span><span class="tag tag-tl">Impact.com API</span></div></span></div>
+        <div class="ac-row"><span class="ac-row-label">APIs used</span><span><div class="tag-row"><span class="tag tag-gy">Google Ads API v17</span><span class="tag tag-gy">Meta Marketing API v20</span></div></span></div>
         <div class="ac-row"><span class="ac-row-label">Tools</span><span><div class="tag-row"><span class="tag tag-bl">LangChain Tools</span><span class="tag tag-bl">GPT-4o</span><span class="tag tag-tl">Google Ads Python Client</span><span class="tag tag-tl">Meta Business SDK</span></div></span></div>
         <div class="ac-row"><span class="ac-row-label">Autonomy</span><span><span class="auto-guard">Guarded</span> — auto within guardrails; human queue for budget &gt;15%, campaign pause, or bid strategy type change</span></div>
       </div>
@@ -1126,9 +1126,9 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
           <div class="ac-name">Creative Generation Sub-Agent</div>
           <div class="ac-role">AI video generation · AI audio &amp; voiceover · image generation · caption production · human approval gate before any asset goes live</div>
         </div>
-        <div class="ac-chev">▼</div>
+        <div class="ac-chev open">▼</div>
       </div>
-      <div class="ac-body">
+      <div class="ac-body open">
         <div class="ac-row"><span class="ac-row-label">Trigger</span><span class="ac-row-val">Dispatched by Creative Intelligence Agent on: (1) human-approved new brief, or (2) fatigue alert brief approved by human. Never self-triggers.</span></div>
         <div class="ac-row"><span class="ac-row-label">Inputs</span><span class="ac-row-val">Structured brief from Redis: {offer, hook_angle, audience_segment, visual_direction, format_list, duration_seconds, brand_guidelines_url, prohibited_content, channel_targets, winning_element_history}. Brand guidelines and asset library fetched from DataBricks gold.brand_assets.</span></div>
 
@@ -1183,9 +1183,9 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
           <div class="ac-name">Audience Intelligence Agent</div>
           <div class="ac-role">Segment monitoring · CRM sync · exclusion management</div>
         </div>
-        <div class="ac-chev">▼</div>
+        <div class="ac-chev open">▼</div>
       </div>
-      <div class="ac-body">
+      <div class="ac-body open">
         <div class="ac-row"><span class="ac-row-label">Trigger</span><span class="ac-row-val">Daily (audience syncs) · Every 2 hrs (saturation monitoring) · Weekly (bid modifier recalculation)</span></div>
         <div class="ac-row"><span class="ac-row-label">CRM sync</span><span class="ac-row-val">Reads DataBricks gold.crm_customers → generates Customer Match CSV → uploads to Google Ads and Meta Custom Audiences APIs. Schedules: daily refresh for suppressions, weekly for lookalike seeds.</span></div>
         <div class="ac-row"><span class="ac-row-label">Exclusion mgmt</span><span class="ac-row-val">Auto-adds converted customers (last 30 days) to suppression lists. Monitors match rate — alerts if below 60%. Validates list sizes meet minimum thresholds for lookalike generation.</span></div>
@@ -1204,9 +1204,9 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
           <div class="ac-name">Reporting &amp; Delivery Agent</div>
           <div class="ac-role">Bi-hourly assembly · GPT-4o summarization · multi-channel delivery · Looker Studio refresh</div>
         </div>
-        <div class="ac-chev">▼</div>
+        <div class="ac-chev open">▼</div>
       </div>
-      <div class="ac-body">
+      <div class="ac-body open">
         <div class="ac-row"><span class="ac-row-label">Cadence</span><span class="ac-row-val">Bi-hourly flash (WA + email) · Daily briefing 8 AM (email) · Daily digest 6 PM (email + Slack) · Weekly review Monday (email PDF) · Real-time CRITICAL alert (WA immediate, bypass cycle)</span></div>
         <div class="ac-row"><span class="ac-row-label">Data assembly</span><span class="ac-row-val">Reads gold.campaign_performance + gold.creative_performance + gold.attribution_view → computes period-over-period deltas → identifies top 3 anomalies from KPI Monitor output → pulls AI action log summary</span></div>
         <div class="ac-row"><span class="ac-row-label">AI summarization</span><span class="ac-row-val">GPT-4o prompt: "Given this performance data [JSON], identify the 3 most important developments, explain root cause in plain English, and list recommended human actions in priority order." Output: 150-word WhatsApp summary + full email report.</span></div>
@@ -1277,12 +1277,20 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
       <td>Lookalike seed generation · HVC audience upload · actual vs. attributed ROAS reconciliation · dynamic conversion value pass-through · MMM data prep</td>
     </tr>
     <tr>
-      <td><span class="plat-badge">Impact.com / PartnerStack</span></td>
-      <td>Impact.com REST API</td>
-      <td>Daily (publisher data) · Real-time (conversion postbacks)</td>
-      <td>Publisher performance metrics, click quality scores, conversion rates, commission payouts, fraud signals, traffic source breakdown</td>
+      <td><span class="plat-badge">Appsflyer (affiliate tracking)</span></td>
+      <td>Appsflyer Pull API + S3 postbacks</td>
+      <td>Real-time postbacks · 2-hr aggregates</td>
+      <td>Affiliate-driven conversions, click quality, partner-level ROAS, fraud signals (Protect360), LTV by affiliate source</td>
+      <td>Campaign Opt. · Reporting Agent · KPI Monitor</td>
+      <td>Affiliate CPA vs. target · fraud detection · partner quality scoring · DataBricks validates conversion data</td>
+    </tr>
+    <tr>
+      <td><span class="plat-badge">Affiliate platform (optional)</span></td>
+      <td>Impact.com / PartnerStack REST API</td>
+      <td>Daily (if used)</td>
+      <td>Publisher contracts, commission payouts, partner recruitment data — only required if running a managed publisher program</td>
       <td>Campaign Opt. · Reporting Agent</td>
-      <td>Publisher quality scoring · fraud flagging · commission efficiency monitoring · affiliate CPA vs. target comparison</td>
+      <td>Commission management · publisher onboarding · payout automation — not required if Appsflyer + DataBricks covers the use case</td>
     </tr>
     </tbody>
   </table>
@@ -1326,7 +1334,7 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
     <tr><td><span class="tool-name">WA delivery</span></td><td>360dialog (WhatsApp Business API)</td><td><span class="tag tag-gr">Delivery</span></td><td>Official Meta BSP. Enables two-way messaging — human can reply to approve/reject agent actions directly in WhatsApp. Template management and delivery receipts via webhook.</td></tr>
     <tr><td><span class="tool-name">Email delivery</span></td><td>Gmail API (service account)</td><td><span class="tag tag-gr">Delivery</span></td><td>Sends HTML reports and PDF attachments from a shared team address. Triggered by n8n workflow post-report assembly. Handles distribution list management.</td></tr>
     <tr><td><span class="tool-name">Human approval UI</span></td><td>Slack (Bolt framework)</td><td><span class="tag tag-am">Human layer</span></td><td>Slack app posts pending actions as interactive blocks with Approve / Reject / Modify buttons. Responses webhook back to Orchestrator. Provides audit trail in Slack channel.</td></tr>
-    <tr><td><span class="tool-name">Affiliate fraud</span></td><td>TrafficGuard</td><td><span class="tag tag-gy">Measurement</span></td><td>Real-time invalid traffic detection at the click and postback level. Integrates with Impact.com and Appsflyer. Auto-blocks fraudulent publisher IDs; writes fraud events to DataBricks.</td></tr>
+    <tr><td><span class="tool-name">Affiliate fraud</span></td><td>TrafficGuard</td><td><span class="tag tag-gy">Measurement</span></td><td>Real-time invalid traffic detection at the click and postback level. Integrates with Appsflyer (primary) and optionally Impact.com. Auto-blocks fraudulent publisher IDs; writes fraud events to DataBricks.</td></tr>
     </tbody>
   </table>
   </div>
@@ -1346,7 +1354,7 @@ body{font-family:var(--font,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
         <a href="https://avinashthakur17.github.io/pm-automation-framework/wf1_campaign_optimization.html" target="_blank" onclick="event.stopPropagation()" style="font-size:11px;font-weight:500;color:var(--teal-t);background:rgba(0,0,0,0.06);border-radius:4px;padding:3px 8px;text-decoration:none;white-space:nowrap;flex-shrink:0">Open full diagram ↗</a>
         <span style="font-size:10px;color:var(--teal-t)">▼</span>
       </div>
-      <div class="wf-body">
+      <div class="wf-body open">
         <div class="wf-step">
           <div class="wf-step-num" style="background:var(--amber-l);color:var(--amber-t)">H</div>
           <div class="wf-step-content">
